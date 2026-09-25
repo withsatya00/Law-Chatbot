@@ -42,7 +42,7 @@ nul
 .tmp/
 *.log
 
-models/
+/models/
 unsloth_compiled_cache/
 *.safetensors
 *.gguf
