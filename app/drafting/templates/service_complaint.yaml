@@ -1,0 +1,93 @@
+draft_id: service_complaint
+name: Service Complaint
+hindi_name: सेवा शिकायत
+category: Complaint
+description: >-
+  A complaint to the District/State Consumer Disputes Redressal Commission
+  regarding a deficient service (e.g. repair, telecom, insurance, courier)
+  rendered by a service provider.
+authority_label: "Before the District Consumer Disputes Redressal Commission,"
+subject_template: "Complaint regarding deficient service: {product_or_service}"
+applicable_acts_hint:
+  - Consumer Protection Act, 2019
+applicable_sections_hint:
+  - Section 35, Consumer Protection Act, 2019
+drafting_notes: >-
+  Frame the complaint under Section 35 of the Consumer Protection Act, 2019,
+  identifying the service provider, the nature of the deficiency, and the
+  relief sought (rectification, refund, or compensation), based strictly on
+  the facts stated by the applicant.
+legal_enrichment_hints:
+  - deficiency in service
+  - service level agreement/warranty terms
+trigger_phrases:
+  - service complaint
+  - deficient service complaint
+  - poor service complaint
+  - service se pareshan
+  - सेवा शिकायत
+  - खराब सेवा शिकायत
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Service Provider Name
+    hindi_label: सेवा प्रदाता का नाम
+  - key: product_or_service
+    label: Service Concerned
+    hindi_label: संबंधित सेवा
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: purchase_date
+    label: Service Date
+    hindi_label: सेवा तारीख
+    field_type: date
+    required: false
+  - key: amount_paid
+    label: Amount Paid (Rs.)
+    hindi_label: भुगतान की गई राशि (रु.)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (invoice, complaint reference, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  provider: respondent_name
+  service: product_or_service
+  amount: amount_paid
+  place: place

@@ -1,0 +1,124 @@
+draft_id: recovery_notice
+name: Recovery of Money Notice
+hindi_name: धन वसूली नोटिस
+category: Notice
+description: >-
+  A demand notice for recovery of an outstanding loan, personal debt, or
+  unpaid dues from a party.
+authority_label: "To,"
+subject_template: "Demand for refund/recovery of Rs. {principal_amount}"
+applicable_acts_hint:
+  - Code of Civil Procedure, 1908
+  - Indian Contract Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  State the principal amount due, the circumstances under which it became
+  due, and demand repayment within 15 days, failing which a civil suit for
+  recovery will be filed with interest and costs.
+legal_enrichment_hints:
+  - contractual obligation
+  - civil liability
+  - recovery through legal process
+trigger_phrases:
+  - recovery notice
+  - money recovery
+  - paisa wapas
+  - loan wapas
+  - udhaar wapas
+  - recovery of money
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: principal_amount
+    label: Principal Amount Due (Rs.)
+    hindi_label: मूल देय राशि (रु.)
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: amount_due_since
+    label: Amount Due Since (Date)
+    hindi_label: राशि कब से बकाया है
+    field_type: date
+    required: false
+  - key: interest_claimed
+    label: Interest Claimed (if any)
+    hindi_label: दावा किया गया ब्याज (यदि कोई हो)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  amount: principal_amount
+  address: applicant_address
+  respondent: respondent_name
+  place: place
+document_family: notice
+domain: financial
+subcategory: debt_recovery
+supported_issues:
+  - payment_default
+  - loan_default
+user_roles:
+  - creditor
+  - lender
+opposite_party_roles:
+  - debtor
+  - borrower
+desired_reliefs:
+  - payment
+case_stages:
+  - pre_litigation
+forums: []
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - recovery notice
+    - money recovery notice
+  hindi:
+    - धन वसूली नोटिस
+  hinglish:
+    - paisa wapas ka notice
+    - loan wapas mangne ka notice
+supporting_documents:
+  - loan agreement or acknowledgment of debt
+  - payment records
+  - prior communications
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: true
+  court_fee_check: false
+  advocate_review_recommended: true
+template_status: production
+template_version: "1.0"

@@ -1,0 +1,114 @@
+draft_id: cyber_crime_complaint
+name: Cyber Crime Complaint
+hindi_name: साइबर अपराध शिकायत
+category: Complaint
+description: >-
+  A complaint to the Cyber Crime Cell / police regarding online fraud, hacking,
+  UPI or bank account fraud, or other cyber offences.
+authority_label: The Officer In-Charge, Cyber Crime Cell,
+applicable_acts_hint:
+  - Information Technology Act, 2000
+  - Bharatiya Nyaya Sanhita, 2023
+applicable_sections_hint:
+  - Section 66
+  - Section 66C
+  - Section 66D
+drafting_notes: >-
+  Set out the sequence of events precisely (how the fraud occurred, what was
+  withdrawn/accessed, and from where), and request registration of a
+  complaint/FIR and freezing/recovery of the fraudulently transferred funds
+  where a transaction ID is available. Rely strictly on the facts, amount,
+  bank, and transaction details the applicant has provided.
+legal_enrichment_hints:
+  - digital fraud
+  - banking regulations
+  - electronic evidence
+  - transaction tracing
+  - fund recovery
+  - account protection
+trigger_phrases:
+  - cyber crime
+  - cyber complaint
+  - cyber fraud
+  - online fraud
+  - upi fraud
+  - hacked
+  - cheated online
+  - online se paisa nikal liya
+  - cyber crime complaint banana hai
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: city
+    label: City
+    hindi_label: शहर
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: incident_date
+    label: Incident Date
+    hindi_label: घटना की तारीख
+    field_type: date
+  - key: fraud_amount
+    label: Fraud Amount (Rs.)
+    hindi_label: धोखाधड़ी की राशि (रु.)
+  - key: bank_name
+    label: Bank Name
+    hindi_label: बैंक का नाम
+  - key: transaction_id
+    label: Transaction ID / UTR Number
+    hindi_label: लेन-देन आईडी/यूटीआर संख्या
+  - key: police_station
+    label: Police Station (nearest, for jurisdiction)
+    hindi_label: निकटतम पुलिस थाना
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+    help_text: Describe how the fraud happened, step by step.
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  # `place` exists on police_complaint/sp_complaint but was missing here, so the
+  # signature block always rendered the blank hand-fill placeholder
+  # ("Place: ______") even for a user who had already said which city they were
+  # in -- see `engine.py`'s signature-block builder, which always emits both a
+  # Place and a Date line by design.
+  - key: place
+    label: Place
+    hindi_label: स्थान
+    required: false
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: fraud_type
+    label: Type of Cyber Fraud
+    hindi_label: साइबर धोखाधड़ी का प्रकार
+    required: false
+    help_text: E.g. UPI fraud, phishing, OTP fraud, hacking, fake website.
+field_synonyms:
+  amount: fraud_amount
+  bank: bank_name
+  transaction: transaction_id
+  utr: transaction_id
+  police station: police_station
+  thana: police_station
+  city: city
+  date: incident_date

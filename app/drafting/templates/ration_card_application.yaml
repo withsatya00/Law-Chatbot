@@ -1,0 +1,70 @@
+draft_id: ration_card_application
+name: Ration Card Application
+hindi_name: राशन कार्ड आवेदन
+category: Application
+description: >-
+  An application to the Food and Civil Supplies Officer requesting issuance
+  of a new ration card or addition/deletion of a family member.
+authority_label: The Food and Civil Supplies Officer,
+applicable_acts_hint:
+  - National Food Security Act, 2013
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  ration card action requested (new card / member addition / member
+  deletion / address change) and the family details given, using only the
+  details given.
+legal_enrichment_hints:
+  - National Food Security Act entitlement
+trigger_phrases:
+  - ration card application
+  - ration card
+  - naya ration card
+  - राशन कार्ड आवेदन
+  - राशन कार्ड
+required_fields:
+  - key: applicant_name
+    label: Applicant Name (Head of Family)
+    hindi_label: आवेदक का नाम (परिवार का मुखिया)
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: information_sought
+    label: Action Requested / Family Details (list each point)
+    hindi_label: अनुरोधित कार्रवाई / परिवार का विवरण (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: bpl_status
+    label: Below Poverty Line?
+    hindi_label: गरीबी रेखा से नीचे?
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (Aadhaar, address proof, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  place: place

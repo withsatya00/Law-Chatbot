@@ -1,0 +1,131 @@
+draft_id: tenancy_termination_notice
+name: Tenancy Termination Notice
+hindi_name: किरायेदारी समाप्ति नोटिस
+category: Notice
+description: >-
+  A legal notice terminating a tenancy and requesting the tenant to vacate
+  and hand over peaceful possession of the rented premises by a stated date.
+authority_label: "To,"
+subject_template: "Notice terminating tenancy of premises at {rented_premises_address}"
+applicable_acts_hint:
+  - Transfer of Property Act, 1882
+  - Model Tenancy Act, 2021
+# Section 106 sets the DEFAULT notice period for a lease of immovable
+# property with no other duration agreed (15 days for month-to-month,
+# ending with the tenancy month) -- a real, citable provision, confirmed via
+# research. Deliberately NOT used to set a default
+# `statutory_response_period_days`/`_basis` on this template: which period
+# actually governs depends on the tenancy's own terms and the applicable
+# State Rent Control Act (commonly 30-90 days), so asserting one fixed
+# number here would risk being wrong for most real leases. Citing the
+# section is safe; assuming its default period is not.
+applicable_sections_hint:
+  - Section 106, Transfer of Property Act, 1882
+drafting_notes: >-
+  State the tenancy details (premises, start date, rent), the ground for
+  termination if given, and direct the tenant to vacate and hand over
+  peaceful possession within the notice period stated (or 30 days if none
+  given), failing which eviction proceedings will be initiated, based
+  strictly on the facts stated by the applicant.
+legal_enrichment_hints:
+  - notice period for termination of tenancy
+  - eviction proceedings as next step
+trigger_phrases:
+  - tenancy termination notice
+  - eviction notice
+  - vacate notice
+  - tenant ko nikalna hai
+  - किरायेदारी समाप्ति नोटिस
+  - मकान खाली करने का नोटिस
+required_fields:
+  - key: applicant_name
+    label: Applicant Name (Landlord)
+    hindi_label: आवेदक का नाम (मकान मालिक)
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Tenant Name
+    hindi_label: किरायेदार का नाम
+  - key: rented_premises_address
+    label: Rented Premises Address
+    hindi_label: किराए की संपत्ति का पता
+    field_type: textarea
+  - key: facts
+    label: Facts of the Case / Reason for Termination (in your own words)
+    hindi_label: मामले के तथ्य / समाप्ति का कारण (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: tenancy_start_date
+    label: Tenancy Start Date
+    hindi_label: किरायेदारी प्रारंभ तिथि
+    field_type: date
+    required: false
+  - key: response_deadline_days
+    label: Days to Vacate By
+    hindi_label: कितने दिनों में खाली करना है
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (rent agreement, rent receipts, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  tenant: respondent_name
+  premises: rented_premises_address
+  place: place
+document_family: notice
+domain: property
+subcategory: tenancy
+supported_issues:
+  - rent_default
+  - failure_to_vacate
+user_roles:
+  - landlord
+opposite_party_roles:
+  - tenant
+desired_reliefs:
+  - payment
+  - vacant_possession
+case_stages:
+  - pre_litigation
+forums: []
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - tenancy termination notice
+    - eviction notice
+  hindi:
+    - किरायेदारी समाप्ति नोटिस
+  hinglish:
+    - tenant ko notice
+    - ghar khali karne ka notice
+supporting_documents:
+  - rent agreement
+  - rent receipts
+  - payment records
+  - prior communications
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: false
+  court_fee_check: false
+  advocate_review_recommended: true
+template_status: production
+template_version: "1.0"

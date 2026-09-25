@@ -1,0 +1,59 @@
+draft_id: resignation_letter
+name: Resignation Letter
+hindi_name: त्यागपत्र
+category: Application
+advocate_register: false
+description: >-
+  A formal letter to an employer tendering resignation from employment,
+  stating the intended last working day and notice period.
+authority_label: The Human Resources Manager,
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  resignation and the intended last working day/notice period, using only
+  the details given. Do not invent a reason the applicant did not state.
+legal_enrichment_hints:
+  - notice period per employment contract
+trigger_phrases:
+  - resignation letter
+  - resign from job
+  - tyagpatra
+  - resignation dena hai
+  - त्यागपत्र
+  - इस्तीफा पत्र
+required_fields:
+  - key: applicant_name
+    label: Employee Name
+    hindi_label: कर्मचारी का नाम
+  - key: designation
+    label: Designation
+    hindi_label: पदनाम
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: information_sought
+    label: Last Working Day and Notice Details (list each point)
+    hindi_label: अंतिम कार्य दिवस और नोटिस विवरण (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: employment_end_date
+    label: Intended Last Working Day
+    hindi_label: इच्छित अंतिम कार्य दिवस
+    field_type: date
+    required: false
+field_synonyms:
+  position: designation
+  post: designation
+  last day: employment_end_date
+  place: place

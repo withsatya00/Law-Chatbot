@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Law Chatbot QA Findings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f5f0;
+    --surface:#ffffff;
+    --surface-2:#efece4;
+    --border:#ddd7c9;
+    --ink:#20201c;
+    --ink-dim:#5c584c;
+    --ink-faint:#8a8574;
+    --accent:#2a4d6e;
+    --accent-ink:#eef3f7;
+    --crit:#a3291e;
+    --crit-bg:#fbeae8;
+    --crit-border:#e6b7b0;
+    --major:#8a5a12;
+    --major-bg:#fbf0dd;
+    --major-border:#e8c98c;
+    --minor:#3d6b8a;
+    --minor-bg:#e9f1f6;
+    --minor-border:#b9d3e3;
+    --fixed:#2f6d4a;
+    --fixed-bg:#e7f3ec;
+    --fixed-border:#aed4bf;
+    --code-bg:#1e1c17;
+    --code-ink:#eae6da;
+    --font-display:"Fraunces",Georgia,serif;
+    --font-body:"Source Sans 3",system-ui,sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#161511; --surface:#1e1c17; --surface-2:#242119; --border:#3a362b;
+      --ink:#ede8db; --ink-dim:#b8b19f; --ink-faint:#867f6c;
+      --accent:#7fa8c9; --accent-ink:#0f1c26;
+      --crit:#f0897d; --crit-bg:#2e1815; --crit-border:#5a2b23;
+      --major:#e8bd77; --major-bg:#2e2413; --major-border:#5a4620;
+      --minor:#8fc0e0; --minor-bg:#131f27; --minor-border:#294254;
+      --fixed:#8fd1ac; --fixed-bg:#122a1d; --fixed-border:#255239;
+      --code-bg:#0e0d0a; --code-ink:#eae6da;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#161511; --surface:#1e1c17; --surface-2:#242119; --border:#3a362b;
+    --ink:#ede8db; --ink-dim:#b8b19f; --ink-faint:#867f6c;
+    --accent:#7fa8c9; --accent-ink:#0f1c26;
+    --crit:#f0897d; --crit-bg:#2e1815; --crit-border:#5a2b23;
+    --major:#e8bd77; --major-bg:#2e2413; --major-border:#5a4620;
+    --minor:#8fc0e0; --minor-bg:#131f27; --minor-border:#294254;
+    --fixed:#8fd1ac; --fixed-bg:#122a1d; --fixed-border:#255239;
+    --code-bg:#0e0d0a; --code-ink:#eae6da;
+  }
+  *{box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{
+    margin:0;
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.55;
+    padding-inline:16px;
+  }
+  a{color:var(--accent);}
+  .wrap{max-width:920px;margin:0 auto;padding-block:32px 80px;}
+
+  header.top{padding-block:8px 28px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+  .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+  h1{font-family:var(--font-display);font-weight:600;font-size:clamp(28px,5vw,40px);margin:.2em 0 .3em;text-wrap:balance;}
+  .sub{color:var(--ink-dim);max-width:62ch;margin:0 0 22px;}
+
+  .stats{display:flex;flex-wrap:wrap;gap:10px;}
+  .stat{
+    flex:1 1 120px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 14px;
+  }
+  .stat .n{font-family:var(--font-display);font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .stat .l{font-size:12px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.05em;}
+  .stat.crit .n{color:var(--crit);}
+  .stat.major .n{color:var(--major);}
+  .stat.minor .n{color:var(--minor);}
+  .stat.fixed .n{color:var(--fixed);}
+
+  nav.filters{
+    position:sticky;top:env(safe-area-inset-top,0px);
+    background:var(--bg);
+    z-index:5;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    padding-block:14px;
+    margin-bottom:8px;
+    border-bottom:1px solid var(--border);
+  }
+  .pill{
+    font-family:var(--font-mono);
+    font-size:12px;
+    padding:6px 12px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--ink-dim);
+    cursor:pointer;
+    user-select:none;
+  }
+  .pill[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+
+  section.area{margin-top:38px;}
+  .area-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .area-head h2{font-family:var(--font-display);font-size:20px;font-weight:600;margin:0;}
+  .area-head .count{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);}
+  .area-note{font-size:13px;color:var(--ink-dim);margin:0 0 16px;max-width:70ch;}
+
+  .bug{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left-width:4px;
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:14px;
+  }
+  .bug[data-sev="crit"]{border-left-color:var(--crit);}
+  .bug[data-sev="major"]{border-left-color:var(--major);}
+  .bug[data-sev="minor"]{border-left-color:var(--minor);}
+  .bug[data-sev="fixed"]{border-left-color:var(--fixed);}
+  .bug[hidden]{display:none!important;}
+
+  .bug-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .bug-id{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);}
+  .bug-title{font-weight:600;font-size:15.5px;margin:2px 0 4px;}
+  .badge{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:999px;
+    white-space:nowrap;
+    border:1px solid transparent;
+  }
+  .badge.crit{background:var(--crit-bg);color:var(--crit);border-color:var(--crit-border);}
+  .badge.major{background:var(--major-bg);color:var(--major);border-color:var(--major-border);}
+  .badge.minor{background:var(--minor-bg);color:var(--minor);border-color:var(--minor-border);}
+  .badge.fixed{background:var(--fixed-bg);color:var(--fixed);border-color:var(--fixed-border);}
+
+  .bug-body{margin-top:10px;font-size:13.5px;color:var(--ink-dim);}
+  .bug-body p{margin:6px 0;}
+  .bug-body strong{color:var(--ink);}
+  code, .repro{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+  }
+  .repro{
+    background:var(--code-bg);
+    color:var(--code-ink);
+    padding:10px 12px;
+    border-radius:8px;
+    overflow-x:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
+    margin:8px 0;
+  }
+  .ev{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin-top:6px;}
+  .ev dt{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);white-space:nowrap;}
+  .ev dd{margin:0;}
+  .file{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);}
+
+  footer.note{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Law Chatbot &middot; Full QA Pass &middot; 2026-09-22</div>
+    <h1>A to Z Bug Report</h1>
+    <p class="sub">184 API endpoints, chat, drafting, notarization, cases and the admin/Streamlit pipeline — tested live against the running app, not read from code. 5 parallel QA passes plus the 3 bugs already fixed earlier this session.</p>
+    <div class="stats">
+      <div class="stat crit"><div class="n">6</div><div class="l">Critical &middot; open</div></div>
+      <div class="stat major"><div class="n">7</div><div class="l">Major &middot; open</div></div>
+      <div class="stat minor"><div class="n">15</div><div class="l">Minor / moderate</div></div>
+      <div class="stat fixed"><div class="n">3</div><div class="l">Already fixed</div></div>
+    </div>
+  </header>
+
+  <nav class="filters" id="filters">
+    <button class="pill" data-filter="all" aria-pressed="true">All (31)</button>
+    <button class="pill" data-filter="crit" aria-pressed="false">Critical</button>
+    <button class="pill" data-filter="major" aria-pressed="false">Major</button>
+    <button class="pill" data-filter="minor" aria-pressed="false">Minor / moderate</button>
+    <button class="pill" data-filter="fixed" aria-pressed="false">Already fixed</button>
+  </nav>
+
+  <!-- ================= ALREADY FIXED ================= -->
+  <section class="area">
+    <div class="area-head"><h2>Already fixed, this session</h2><span class="count">3 bugs</span></div>
+    <p class="area-note">Found and fixed before the QA pass, while building the state-adapter/bulk-review tooling. Re-verified live by Agent 4 (KB admin pass) after the fix — confirmed holding, including through real chat retrieval.</p>
+
+    <article class="bug" data-sev="fixed">
+      <div class="bug-top">
+        <div><div class="bug-id">F1</div><div class="bug-title">Review queue showed 2,174 documents waiting when only 21 actually were</div></div>
+        <span class="badge fixed">Fixed</span>
+      </div>
+      <div class="bug-body">
+        <p>The Streamlit review page read a staging-ledger snapshot of <code>review_status</code> taken once at indexing time — it never updated after a document was later approved. The count only ever grew.</p>
+        <p><strong>Fix:</strong> new endpoint <code>GET /admin/knowledge-base/documents/needs-review</code> queries live status directly from <code>uploaded_documents</code>.</p>
+        <p class="file">app/services/kb_ingestion_service.py, streamlit_app/legal_source_review_page.py</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="fixed">
+      <div class="bug-top">
+        <div><div class="bug-id">F2</div><div class="bug-title">"Strong evidence" signal never lit up for any document, ever</div></div>
+        <span class="badge fixed">Fixed</span>
+      </div>
+      <div class="bug-body">
+        <p>The review page's "all green / quick verify" check ran on a payload that had already had <code>machine_verification</code> stripped out of it (deliberately, so stale evidence isn't resubmitted) — so the evidence check was structurally unreachable, for every document, always.</p>
+        <p><strong>Fix:</strong> <code>_signals_for_record()</code> re-injects the raw, never-resubmitted evidence just for the check.</p>
+        <p class="file">streamlit_app/legal_source_review_page.py</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="fixed">
+      <div class="bug-top">
+        <div><div class="bug-id">F3</div><div class="bug-title">Clicking "Publish" silently downgraded verified &rarr; inferred — document never actually became retrievable</div></div>
+        <span class="badge fixed">Fixed</span>
+      </div>
+      <div class="bug-body">
+        <p>An automation-discovered document's existing <code>metadata_provenance: "automated_official"</code> tag leaked into the resubmitted payload. <code>normalize_jurisdiction</code> reads that field from the submission in preference to the endpoint's own <code>provenance=MANUAL</code> default — so a non-manual provenance silently downgrades <code>verified</code> to <code>inferred</code>. The UI reported 200 OK; the document never actually reached shared retrieval, no matter how many times it was republished.</p>
+        <p><strong>Fix:</strong> strip <code>metadata_provenance</code> before resubmission, in both the Streamlit form and the new bulk-review backend method.</p>
+        <p class="file">app/services/kb_ingestion_service.py, streamlit_app/legal_source_review_page.py</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= CHAT / SESSION ================= -->
+  <section class="area">
+    <div class="area-head"><h2>Chat, voice, search, history, auth</h2><span class="count">10 bugs</span></div>
+    <p class="area-note">Core conversational surface. 4 of the 6 open critical bugs in this whole report are here.</p>
+
+    <article class="bug" data-sev="crit">
+      <div class="bug-top">
+        <div><div class="bug-id">C1</div><div class="bug-title">Any account (or no account at all) can read and overwrite another user's session facts, before that session's first chat message</div></div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="bug-body">
+        <p><strong>Cause:</strong> a session's <code>owner_user_id</code> is only bound the first time <code>POST /chat</code> is called for that <code>session_id</code>. Before that, <code>GET/PATCH/DELETE /session/facts</code>, <code>PUT /session/missing-details</code> and <code>GET /session</code> perform no ownership check.</p>
+        <div class="repro">PATCH /session/facts?session_id=X  (User1 token) &rarr; sets secret_key
+GET   /session/facts?session_id=X  (User2 token, or NO token at all) &rarr; 200, returns User1's data
+PATCH /session/facts?session_id=X  (User2 token) &rarr; 200, overwrites it</div>
+        <p>Once <code>/chat</code> is later called on that session, ownership retroactively binds and 403s correctly kick in from then on — but by then the tampered data is already saved.</p>
+        <div class="ev">
+          <dt>Impact</dt><dd>Cross-account read + write, zero auth boundary, in a real pre-launch window.</dd>
+          <dt>File</dt><dd class="file">app/api/chat.py or app/services/session_facts (session ownership binding)</dd>
+        </div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="crit">
+      <div class="bug-top">
+        <div><div class="bug-id">C2</div><div class="bug-title">"Delete all my data" reports success but leaves chat history completely intact</div></div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="bug-body">
+        <div class="repro">DELETE /me/data  &rarr; 200 {"status":"deleted","deleted":{"chat_messages":0, ...all zero...}}
+GET    /history?session_id=X  &rarr; full question+answer history, still there, untouched</div>
+        <p>Contrast test: <code>DELETE /session?session_id=X</code> on the exact same data correctly reports <code>chat_messages:1</code> and actually empties it — proving deletion itself works, the account-level endpoint's targeting/counting logic is simply wrong.</p>
+        <div class="ev"><dt>Impact</dt><dd>This is the privacy/GDPR-style "erase my data" feature. It doesn't erase chat history, and the 200 response actively tells the user it did.</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="crit">
+      <div class="bug-top">
+        <div><div class="bug-id">C3</div><div class="bug-title">Model's internal reasoning / system-prompt text leaks verbatim into a user-facing answer</div></div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="bug-body">
+        <p>100% reproducible, 2/2 tries, with a specific two-turn sequence (ask a substantive question, then "Is it a cognizable offence?" as a follow-up on the same session). The <code>answer</code> field contains a literal <code>&lt;/think&gt;</code> tag and lines like <em>"The instructions say: ... The system prompt says: 'if it's empty or actually about something else, output Rule 2's exact fallback line...'"</em> — before finally emitting the intended fallback.</p>
+        <p>Also returns a broken non-answer instead of the real one (the question was in fact answerable from context the model had).</p>
+        <div class="ev"><dt>Impact</dt><dd>Discloses internal prompt content; user sees a garbled, unprofessional response instead of an answer.</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="crit">
+      <div class="bug-top">
+        <div><div class="bug-id">C4</div><div class="bug-title">The same document exists as two Mongo records with contradictory review status — the admin queue shows a stale duplicate while a different duplicate is what's actually served live</div></div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="bug-body">
+        <p>Two filenames (a Lalita Kumari judgment PDF, a Delhi Police FAQ PDF) each have two document records with the <strong>identical <code>document_hash</code> and <code>version_number</code></strong> — one flagged <code>needs_review</code>/<code>unverified</code>, the other <code>approved</code>/<code>verified</code> and the one chat actually cites.</p>
+        <p>An admin reviewing the needs-review queue is looking at content that's already superseded by an already-approved twin — false confidence about what end users see, and wasted review effort.</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">C5</div><div class="bug-title"><code>explanation_mode</code> request field has zero effect</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p><code>simple</code> / <code>detailed</code> / <code>advocate</code> all returned byte-identical answers on the same question; <code>explanation_level</code> in the response stayed <code>"citizen"</code> in every case. Accepted (no 422), silently a no-op.</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">C6</div><div class="bug-title">A question about one Act gets silently answered from a different Act, with no note</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p>"What is Section 302 of the Bharatiya Nyaya Sanhita about?" (the penal code) was answered entirely from Section 302 of the Bharatiya Nagarik Suraksha Sanhita (criminal procedure) — a different Act — with no disclosure that the named Act had no matching content or that the answer came from elsewhere. Likely to mislead, since IPC §302 (a number many users already know) means murder; the actual answer is an unrelated procedural provision.</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">C7</div><div class="bug-title"><code>DELETE /chat</code> reports the wrong count of messages deleted</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>Reports <code>messages_deleted: 1</code> when 2 messages (user + assistant) were present and both were actually removed. Deletion itself is correct — only the number is wrong.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">C8</div><div class="bug-title">Chunk <code>language</code> metadata is unreliable</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>The (English) Bharatiya Nyaya Sanhita 2023 PDF is tagged <code>"language": "hindi"</code> across multiple cited chunks. Any feature that trusts this field (language filters, UI labels) would misbehave.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">C9</div><div class="bug-title">Voice transcription hallucinates text from silence</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>A fully silent 1-second WAV produced a transcribed <code>"So my mom"</code> instead of recognizing no speech. Likely inherent STT behavior needing a VAD/silence gate rather than an app-logic bug.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">C10</div><div class="bug-title"><code>POST /search</code> works with no Authorization header</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>Returns real 200 results fully unauthenticated. Possibly intentional as a public endpoint — flagged to confirm that's the intent, since every sibling endpoint requires auth.</p></div>
+    </article>
+  </section>
+
+  <!-- ================= DRAFTING ================= -->
+  <section class="area">
+    <div class="area-head"><h2>Document drafting</h2><span class="count">3 bugs</span></div>
+    <p class="area-note">38 endpoints — the AI-assisted legal document generation and export pipeline.</p>
+
+    <article class="bug" data-sev="crit">
+      <div class="bug-top">
+        <div><div class="bug-id">D1</div><div class="bug-title">When the LLM times out, the fallback document silently drops rent, deposit and other collected figures — across all 8 contract templates</div></div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="bug-body">
+        <p>When the LLM call exceeds its timeout (observed at &gt;88s), the engine falls back to a "deterministic" generator. For every template in the Contract family (rent, NDA, MOU, partnership, service, property purchase/sale, business proposal), that fallback only ever reads a fixed handful of fields (purpose, term, parties, governing law) — it never reads template-specific fields like <strong>monthly rent</strong> or <strong>security deposit</strong>.</p>
+        <p>The draft still reaches <code>preview_ready</code>, is fully exportable, and can be approved/locked/exported with the money terms permanently missing from the actual document text — while <code>GET /draft/{id}/review</code> shows them correctly stored in <code>user_facts</code> the whole time. The data isn't lost; the renderer just never looks at it.</p>
+        <p>Confirmed systemic by reading <code>_deterministic_contract_sections</code> (app/drafting/engine.py:2672), not a one-off.</p>
+        <div class="ev"><dt>File</dt><dd class="file">app/drafting/engine.py, _deterministic_contract_sections / _deterministic_sections</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">D2</div><div class="bug-title">Exported PDFs of Hindi content look correct on screen but extract as garbled text</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p>A Hindi-translated draft, exported to PDF: <strong>visually</strong> renders crisp, correctly-shaped Devanagari (confirmed by rendering to PNG) — but <strong>text extraction</strong> (PyMuPDF and pypdf, cross-checked) is corrupted: <code>"किराया अनुबंध"</code> extracts as <code>"Įकिराया अनुबंध"</code>, with a spurious <code>Į</code> (a character with no place in Hindi text) and scrambled vowel-sign ordering. English-only exports of the same draft extracted cleanly — this is specific to complex-script shaping in the PDF's ToUnicode mapping.</p>
+        <p>Looks fine to a human printing or reading it; breaks copy-paste, in-PDF search, accessibility, and any automated text extraction downstream (e-filing portals, audit tooling).</p>
+        <div class="ev"><dt>File</dt><dd class="file">app/drafting/export.py, PDF generation path (WeasyPrint)</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">D3</div><div class="bug-title">Hallucination audit fires false positives on ordinary statute years, drowning out real findings</div></div>
+        <span class="badge minor">Moderate</span>
+      </div>
+      <div class="bug-body">
+        <p><code>POST /draft/audit</code> on a normal, correctly-generated draft returned <code>ok: false</code> with 6 findings — all flagging standard Act years (1882, 1908, 2021) and the document's own auto-filled signing date (2026) as "unsupported figures," none of which were ever meant to come from user facts.</p>
+        <p>This will train reviewers to dismiss <code>audit_findings</code> as noise — meaning a genuine hallucinated figure (a wrong rent amount the LLM invented) would be buried among routine false alarms instead of standing out.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= NOTARIZATION / CASES ================= -->
+  <section class="area">
+    <div class="area-head"><h2>Cases &amp; notarization</h2><span class="count">7 bugs</span></div>
+    <p class="area-note">39 endpoints. The core "get notarized, then verify" journey could not be exercised at all — flagged separately below.</p>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">N1</div><div class="bug-title">The e-sign callback token is generated, then discarded — no legitimate caller can ever complete a signing callback</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p><code>initiate_signing()</code> computes a <code>callback_token</code> but never puts it in the API response and never attaches it to the outgoing provider request (<code>callback_url</code> defaults to empty). <code>POST /notarization/signing/callback</code> requires exactly that token — which now exists nowhere a real client or provider could ever obtain it.</p>
+        <p>Architectural, not config-specific: this would block a real e-signing vendor integration too, not just this deployment's "manual" provider.</p>
+        <div class="ev"><dt>File</dt><dd class="file">app/notarization/service.py:339, app/api/notarization.py:183</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">N2</div><div class="bug-title">Full notarize &rarr; verify pipeline is unreachable in this deployment — could not be tested end-to-end</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p>Only provider configured is <code>manual</code>, whose <code>initiate()</code> always returns <code>pending</code> and never transitions a document past <code>ready_for_signature</code> — so <code>signed</code>, and therefore <code>notarized</code>, is never reachable through the live API. Confirmed the state-machine guard itself is sound (a self-signed grey-box token was correctly refused for an invalid transition), but the actual notarize-then-verify-then-QR user journey — the thing this pass most needed to confirm — was not exercisable at all.</p>
+        <p><strong>Recommend:</strong> a test/mock provider that actually reaches <code>signed</code>, or an admin "record external signature" escape hatch, before launch.</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">N3</div><div class="bug-title"><code>GET /notarization/eligibility</code> has no authentication</div></div>
+        <span class="badge minor">Moderate</span>
+      </div>
+      <div class="bug-body"><p>Unlike every sibling endpoint, this one is reachable with zero Authorization header and returns another user's draft category/eligibility. Content isn't exposed, but it's an inconsistent trust boundary in an otherwise carefully-gated module.</p>
+      <div class="ev"><dt>File</dt><dd class="file">app/api/notarization.py:152</dd></div></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">N4</div><div class="bug-title">A case can link to any document/draft ID string — no existence or ownership check</div></div>
+        <span class="badge minor">Moderate</span>
+      </div>
+      <div class="bug-body"><p><code>attach_document</code>/<code>link_draft</code> just append whatever ID string is supplied; a bogus ID surfaces straight into <code>lawyer-summary</code>. No check that it exists, and no check that the caller owns it — worth closing before anything dereferences these arrays to fetch real content.</p>
+      <div class="ev"><dt>File</dt><dd class="file">app/services/case_service.py:159-174</dd></div></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">N5</div><div class="bug-title"><code>resolve_case_conflict</code> accepts any slot name, not just real pending conflicts</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>No check against <code>case.unresolved_conflicts</code>. Low impact — only pollutes the owner's own data — but same "unchecked input" pattern as N4.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">N6</div><div class="bug-title">Two different rate-limit error response shapes</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>The notarization-specific limiter returns the app's standard <code>{"error":{"code","message"}}</code> envelope; the global rate-limit middleware returns FastAPI's default <code>{"detail": "..."}</code>. A client that only parses <code>error.message</code> mishandles the second form.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">N7</div><div class="bug-title">Client can set its own <code>task_id</code> and create a task as already <code>completed</code></div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>Not a security issue on the owner's own case, but if <code>task_id</code> is assumed server-generated elsewhere, this could collide with or break that assumption.</p></div>
+    </article>
+  </section>
+
+  <!-- ================= GOVERNANCE / PHASE 2-3 ================= -->
+  <section class="area">
+    <div class="area-head"><h2>Legal-source governance &amp; automation admin</h2><span class="count">6 bugs</span></div>
+    <p class="area-note">56 endpoints — source verify/review/supersede tracking, dashboards, evaluation runs, law-monitor and KB-automation job controls.</p>
+
+    <article class="bug" data-sev="crit">
+      <div class="bug-top">
+        <div><div class="bug-id">G1</div><div class="bug-title">Verifying a legal source updates the registry and audit log — but never reaches the actual document content users see</div></div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="bug-body">
+        <p><code>link_document()</code> is the only code path that ever writes governance fields into a document's chunks, and it's a one-time snapshot copy at link time. <code>review()</code>/<code>verify()</code>/<code>supersede()</code> only update the separate <code>legal_sources</code> registry — none of them re-propagate into the chunks already linked to that source.</p>
+        <div class="repro">1. link-document  &rarr; chunk metadata.verification_status = "unverified"  (correct at this point)
+2. POST .../review  {"verification_status":"verified", evidence_url, review_notes}
+   &rarr; 200, legal_sources record now correctly says "verified"
+3. Re-check the SAME document's live chunks
+   &rarr; still "unverified" — never updated, and stays that way through every future
+      verify/supersede/rejection on that source, unless link-document is manually re-run</div>
+        <p>Same "signal never lights up" shape as F2 above, triggered a different way — a write succeeds in one place and is trusted to have propagated, but never does.</p>
+        <div class="ev"><dt>File</dt><dd class="file">app/services/phase3.py, LegalUpdateService.review/verify/supersede</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">G2</div><div class="bug-title"><code>POST .../legal-sources/{id}/verify</code> can never actually set "verified" — the request schema is missing required fields</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p><code>VerifySourceRequest</code> has no <code>evidence_url</code>/<code>review_notes</code> fields; the service wraps them with <code>getattr(..., "")</code>, which is always empty — and the underlying review logic unconditionally rejects "verified" without non-empty evidence. 100% reproducible, every source, every attempt.</p>
+        <div class="repro">POST /admin/phase3/legal-sources/{id}/verify {"verification_status":"verified","last_verified_date":"..."}
+&rarr; 400 "Verification requires an evidence URL..."   (no request body can ever satisfy this endpoint)</div>
+        <p>Only the newer <code>/review</code> endpoint (which does declare those fields) can actually verify a source.</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="major">
+      <div class="bug-top">
+        <div><div class="bug-id">G3</div><div class="bug-title">Re-reviewing a source with a non-"verified" decision silently erases its recorded evidence; the "stale" flag ignores verification status entirely</div></div>
+        <span class="badge major">Major</span>
+      </div>
+      <div class="bug-body">
+        <p><code>evidence_url</code>/<code>review_notes</code> are unconditionally overwritten with whatever the new request supplies (default empty) — unlike every other field on this model, which only patches what's actually sent. Moving a verified source to <code>pending_review</code> with no evidence in the request wipes the prior verification's evidence trail, unrecoverable via the API.</p>
+        <p>Separately: the dashboard's <code>stale</code> flag is computed only from <code>last_verified_date</code> age and repealed/superseded status — not from <code>verification_status</code>. A source can move from "verified" down to "pending_review" or even "rejected" and register as <code>stale: false</code> as long as the date is fresh, which undermines exactly the signal the governance dashboard exists to surface.</p>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">G4</div><div class="bug-title">Law-monitor "check" gives the same response for a busy monitor and a nonexistent one</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p><code>POST .../law-monitors/{id}/check</code> on a mistyped/deleted ID returns <code>200 {"status":"busy"}</code> instead of 404 — an admin will wait for a lease that will never clear.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">G5</div><div class="bug-title">Retrying a nonexistent automation job "succeeds" silently</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p><code>POST .../kb-automation/jobs/{id}/retry</code> on a bad ID returns <code>200 {"requeued": false}</code> — same shape as "exists but wasn't failed." A typo'd ID gives no error signal.</p></div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">G6</div><div class="bug-title">No way to fetch a past evaluation run's results except the single most recent one</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p>Runs persist to Mongo with a real <code>run_id</code>, but no <code>GET /evaluations</code> or <code>/evaluations/{run_id}</code> exists — running a second evaluation makes the first permanently unfetchable through the API, even though it's sitting in the database.</p></div>
+    </article>
+  </section>
+
+  <!-- ================= KB ADMIN ================= -->
+  <section class="area">
+    <div class="area-head"><h2>KB admin, uploads &amp; analytics</h2><span class="count">2 bugs</span></div>
+    <p class="area-note">37 endpoints, plus the two Streamlit admin pages not already covered. Every drift/staleness check specifically hunted for here came back clean — the three earlier fixes hold.</p>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">K1</div><div class="bug-title">"Unanswered queries" queue reports its page size as the total count, not the real total</div></div>
+        <span class="badge minor">Moderate</span>
+      </div>
+      <div class="bug-body">
+        <div class="repro">GET .../unanswered-queue?limit=200&skip=0    &rarr; {"count":200, "items":[...200 items, first id 6f00e323...]}
+GET .../unanswered-queue?limit=200&skip=200  &rarr; {"count":200, "items":[...200 DIFFERENT items, first id 97d0da64...]}</div>
+        <p>400+ real records confirmed to exist; <code>count</code> always just equals <code>len(items)</code> for that page. Any dashboard badge trusting <code>count</code> will always under-report once the backlog exceeds the page size.</p>
+        <div class="ev"><dt>File</dt><dd class="file">app/api/analytics.py:46</dd></div>
+      </div>
+    </article>
+
+    <article class="bug" data-sev="minor">
+      <div class="bug-top">
+        <div><div class="bug-id">K2</div><div class="bug-title">The <code>filename</code> field means two different things in two related endpoints</div></div>
+        <span class="badge minor">Minor</span>
+      </div>
+      <div class="bug-body"><p><code>POST /upload</code>'s <code>filename</code> is the original uploaded name; <code>GET /documents</code>'s <code>filename</code> for the same document is the generated storage UUID. A document list built from the second would show a meaningless UUID instead of the name the user gave it.</p></div>
+    </article>
+  </section>
+
+  <footer class="note">
+    <p>All findings from real HTTP calls against the running app (curl / httpx), following each write with an independent re-fetch to confirm actual persisted state — not from reading code or trusting a 200&nbsp;response. Five parallel passes covered all 184 documented API endpoints plus the admin Streamlit pages; nothing here was fixed as part of this pass — findings only. Test accounts and sample data created during testing (qa_test_user / qa_test_admin / qa_test_lawyer and their sessions/drafts/cases) are still in the database and safe to clean up.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var pills = document.querySelectorAll('#filters .pill');
+  var bugs = document.querySelectorAll('.bug');
+  var areas = document.querySelectorAll('section.area');
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){
+      pills.forEach(function(x){ x.setAttribute('aria-pressed', x===p ? 'true':'false'); });
+      var f = p.getAttribute('data-filter');
+      bugs.forEach(function(b){
+        b.hidden = !(f === 'all' || b.getAttribute('data-sev') === f);
+      });
+      areas.forEach(function(a){
+        var visible = a.querySelectorAll('.bug:not([hidden])').length;
+        a.style.display = visible ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "id": "Q13",
+  "lang": "Malayalam",
+  "question": "എന്റെ ബാങ്ക് അക്കൗണ്ടിൽ നിന്ന് ഞാൻ അനുവദിക്കാത്ത ഒരു ഇടപാട് നടന്നു. ഉടൻ എന്ത് ചെയ്യണം? പണം തിരികെ ലഭിക്കുമെന്ന് ഉറപ്പുനൽകാതെ വിശദീകരിക്കുക.",
+  "http_status": null,
+  "client_latency_ms": null,
+  "response": null,
+  "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=150)",
+  "note": "retry after first attempt hit 90s client read-timeout"
+}

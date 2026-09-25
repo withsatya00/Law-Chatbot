@@ -1,0 +1,67 @@
+draft_id: business_proposal
+name: Business Proposal
+hindi_name: व्यावसायिक प्रस्ताव
+category: Contract
+description: >-
+  A formal business proposal from a proposing company to a prospective
+  client, setting out the proposed scope of work, pricing, and terms, with
+  space for the client to countersign acceptance.
+authority_label: "N/A — proposal to the party named below."
+subject_template: "Business Proposal for {contract_purpose}"
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft a business proposal from the proposing party (Party of the First
+  Part) to the prospective client (Party of the Second Part) covering the
+  proposed scope of work, pricing, and the terms/conditions given, based
+  strictly on the facts stated. This proposal becomes binding only upon the
+  client's signed acceptance.
+legal_enrichment_hints:
+  - proposal becomes binding only on client's acceptance
+  - validity period of the proposal
+trigger_phrases:
+  - business proposal
+  - proposal for services
+  - commercial proposal
+  - vyavsayik prastav
+  - व्यावसायिक प्रस्ताव
+  - बिजनेस प्रपोजल
+required_fields:
+  - key: party_a_name
+    label: Proposing Company Name
+    hindi_label: प्रस्तावक कंपनी का नाम
+  - key: party_a_address
+    label: Proposing Company Address
+    hindi_label: प्रस्तावक कंपनी का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Prospective Client Name
+    hindi_label: संभावित ग्राहक का नाम
+  - key: party_b_address
+    label: Prospective Client Address
+    hindi_label: संभावित ग्राहक का पता
+    field_type: textarea
+  - key: contract_purpose
+    label: Proposed Scope of Work
+    hindi_label: प्रस्तावित कार्य का दायरा
+    field_type: textarea
+  - key: terms
+    label: Pricing and Terms and Conditions (in your own words)
+    hindi_label: मूल्य निर्धारण और नियम व शर्तें (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: term_duration
+    label: Validity Period of Proposal
+    hindi_label: प्रस्ताव की वैधता अवधि
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  scope: contract_purpose
+  place: place

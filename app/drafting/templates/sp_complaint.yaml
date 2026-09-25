@@ -1,0 +1,94 @@
+draft_id: sp_complaint
+name: Complaint to Superintendent of Police
+hindi_name: पुलिस अधीक्षक को शिकायत
+category: Complaint
+description: >-
+  An escalation complaint to the Superintendent of Police (SP) when a police
+  station has not taken action on an earlier complaint or FIR request.
+authority_label: The Superintendent of Police,
+applicable_acts_hint:
+  - Bharatiya Nagarik Suraksha Sanhita, 2023
+applicable_sections_hint:
+  - Section 173(4)
+drafting_notes: >-
+  State that an earlier complaint was made to the concerned police station
+  and that no action has been taken, and request the Superintendent of Police
+  to direct registration of an FIR and appropriate investigation under
+  Section 173(4) of the Bharatiya Nagarik Suraksha Sanhita, 2023. Rely
+  strictly on the facts provided; do not fabricate a prior complaint
+  reference if none was given.
+legal_enrichment_hints:
+  - supervisory jurisdiction
+  - administrative accountability
+  - escalation of an unaddressed complaint
+trigger_phrases:
+  - complaint to sp
+  - superintendent of police
+  - sp ko shikayat
+  - fir nahi likhi
+  - police action nahi liya
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: police_station
+    label: Concerned Police Station
+    hindi_label: संबंधित पुलिस थाना
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Incident Date
+    hindi_label: घटना की तारीख
+    field_type: date
+    required: false
+  - key: prior_complaint_reference
+    label: Earlier Complaint Reference (date / diary number, if any)
+    hindi_label: पूर्व शिकायत संदर्भ (तारीख/डायरी संख्या, यदि कोई हो)
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  police station: police_station
+  thana: police_station
+  place: place

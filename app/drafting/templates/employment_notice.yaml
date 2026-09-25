@@ -1,0 +1,91 @@
+draft_id: employment_notice
+name: Employment Dues / Wrongful Termination Notice
+hindi_name: वेतन/गलत बर्खास्तगी नोटिस
+category: Notice
+description: >-
+  A notice to an employer demanding unpaid salary, dues, or full and final
+  settlement, or challenging a wrongful termination.
+authority_label: "To,"
+applicable_acts_hint:
+  - Payment of Wages Act, 1936
+  - Industrial Disputes Act, 1947
+applicable_sections_hint: []
+drafting_notes: >-
+  State the employment relationship, the dues or wrongful action alleged, and
+  demand settlement/reinstatement as applicable within 15 days, failing which
+  the applicant will pursue remedies before the appropriate labour authority.
+legal_enrichment_hints:
+  - employment obligations
+  - outstanding dues
+  - wrongful termination
+trigger_phrases:
+  - salary notice
+  - wrongful termination
+  - naukri se nikala
+  - salary nahi mili
+  - employment notice
+  - termination notice
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: designation
+    label: Designation / Post Held
+    hindi_label: पद
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: employment_start_date
+    label: Date of Joining
+    hindi_label: नियुक्ति की तारीख
+    field_type: date
+    required: false
+  - key: employment_end_date
+    label: Date of Termination / Resignation
+    hindi_label: समाप्ति/इस्तीफे की तारीख
+    field_type: date
+    required: false
+  - key: dues_amount
+    label: Amount of Unpaid Dues (Rs.)
+    hindi_label: अवैतनिक बकाया राशि (रु.)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  employer: respondent_name
+  company: respondent_name
+  designation: designation
+  post: designation
+  place: place

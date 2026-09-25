@@ -1,0 +1,167 @@
+draft_id: rent_notice
+name: Rent / Security Deposit Recovery Notice
+hindi_name: किराया/सुरक्षा जमा वापसी नोटिस
+category: Notice
+description: >-
+  A notice to a landlord or tenant regarding unpaid rent, wrongful eviction,
+  or non-refund of a security deposit after vacating the premises.
+authority_label: "To,"
+applicable_acts_hint:
+  - Transfer of Property Act, 1882
+  - applicable state Rent Control Act
+applicable_sections_hint: []
+drafting_notes: >-
+  Clearly state the tenancy details and the amount demanded (unpaid rent
+  and/or the security deposit). State a period for payment ONLY if the sender
+  supplied one in Reply / Payment Period (days); no statute fixes a period for
+  this notice, so do not state one otherwise and do not imply that a deadline
+  exists. Do not state that failure to reply admits the facts, do not threaten
+  criminal proceedings, and do not claim interest, costs, damages or mental
+  distress unless the sender expressly asked for them in the relief.
+legal_enrichment_hints:
+  - tenancy rights
+  - statutory notice period
+  - consequences of non-payment or non-vacation
+trigger_phrases:
+  - rent notice
+  - security deposit
+  - kiraya notice
+  - kiraya wapas
+  - deposit wapas
+  - landlord notice
+  - tenant notice
+  - किराया वापसी नोटिस
+  - सुरक्षा जमा वापसी नोटिस
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: rented_premises_address
+    label: Address of Rented Premises
+    hindi_label: किराए की संपत्ति का पता
+    field_type: textarea
+  - key: security_deposit_amount
+    label: Security Deposit Amount (Rs.)
+    hindi_label: सुरक्षा जमा राशि (रु.)
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: tenancy_start_date
+    label: Tenancy Start Date
+    hindi_label: किरायेदारी प्रारंभ तिथि
+    field_type: date
+    required: false
+  - key: tenancy_end_date
+    label: Tenancy End / Vacate Date
+    hindi_label: किरायेदारी समाप्ति/खाली करने की तिथि
+    field_type: date
+    required: false
+  - key: agreement_date
+    label: Date of the Rent Agreement
+    hindi_label: किरायानामे की तिथि
+    field_type: date
+    required: false
+  - key: possession_date
+    label: Date Possession of the Premises was Taken
+    hindi_label: परिसर का कब्ज़ा लेने की तिथि
+    field_type: date
+    required: false
+  - key: monthly_rent
+    label: Monthly Rent (Rs.)
+    hindi_label: मासिक किराया (रु.)
+    required: false
+  - key: deposit_payment_evidence
+    label: How the Deposit was Paid (mode, date, reference)
+    hindi_label: जमा राशि का भुगतान कैसे हुआ (माध्यम, तिथि, संदर्भ)
+    field_type: textarea
+    required: false
+    help_text: >-
+      Cheque/UPI/bank transfer reference or receipt details for the deposit.
+      Rendered as a particular so the payment can be checked; never asserted
+      unless you supply it.
+  - key: deductions_claimed
+    label: Deductions the Landlord Claims from the Deposit
+    hindi_label: मकान मालिक द्वारा जमा राशि से दावा की गई कटौती
+    field_type: textarea
+    required: false
+    help_text: >-
+      What the landlord says they are entitled to withhold, and how much, in
+      their own terms. Recording it lets the notice address it instead of
+      ignoring it.
+  - key: prior_demand
+    label: Earlier Demand / Communication about the Deposit
+    hindi_label: जमा राशि हेतु पूर्व माँग/संवाद
+    field_type: textarea
+    required: false
+  - key: response_deadline_days
+    label: Reply / Payment Period (days)
+    hindi_label: उत्तर/भुगतान की अवधि (दिन)
+    field_type: number
+    required: false
+    help_text: >-
+      Optional. If you leave this blank the notice states no deadline: no
+      statute fixes a reply period for a security-deposit demand, so a period
+      would be one this tool invented rather than one you chose.
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+# Rendered as the notice's own labelled particulars block, in this order.
+particulars_fields:
+  - rented_premises_address
+  - agreement_date
+  - tenancy_start_date
+  - possession_date
+  - tenancy_end_date
+  - monthly_rent
+  - security_deposit_amount
+  - deposit_payment_evidence
+  - deductions_claimed
+  - prior_demand
+field_synonyms:
+  rent: monthly_rent
+  monthly rent: monthly_rent
+  agreement date: agreement_date
+  possession: possession_date
+  vacate: tenancy_end_date
+  vacated: tenancy_end_date
+  handover: tenancy_end_date
+  deduction: deductions_claimed
+  deductions: deductions_claimed
+  earlier demand: prior_demand
+  deadline: response_deadline_days
+  deposit: security_deposit_amount
+  amount: security_deposit_amount
+  address: rented_premises_address
+  respondent: respondent_name
+  place: place

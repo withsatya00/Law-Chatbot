@@ -1,0 +1,170 @@
+draft_id: cheque_bounce_notice
+name: Cheque Bounce Notice
+hindi_name: चेक बाउंस नोटिस
+category: Notice
+description: >-
+  A statutory demand notice under Section 138 of the Negotiable Instruments
+  Act, 1881, issued within 30 days of receiving the cheque return memo,
+  demanding payment within 15 days before criminal proceedings can be
+  initiated.
+authority_label: "To,"
+subject_template: "Statutory notice under Section 138, Negotiable Instruments Act, 1881 — dishonour of cheque no. {cheque_number}"
+applicable_acts_hint:
+  - Negotiable Instruments Act, 1881
+applicable_sections_hint:
+  - Section 138
+  - Section 142
+drafting_notes: >-
+  This is a statutory notice under Section 138 of the Negotiable Instruments
+  Act, 1881. It must state the cheque particulars precisely, demand payment
+  of the cheque amount within 15 days of receipt of this notice, and state
+  that failure to pay will result in a criminal complaint under Section 138
+  read with Section 142 of the Act. Do not state or imply that the cheque was
+  dishonoured for any reason other than what the applicant explicitly
+  provided. If the date the return memo was received from the bank is
+  available, state that this notice is being issued within the statutory
+  thirty-day period from that date (proviso (b) to Section 138) -- using the
+  supplied dishonour_date, never a computed or assumed date. Do not assert
+  that the cheque was presented within its validity period or six months of
+  the date it was drawn unless the applicant's own facts establish that.
+legal_enrichment_hints:
+  - statutory notice
+  - financial liability
+  - payment demand
+# The fifteen-day payment period in this notice is not a choice -- it is
+# proviso (c) to section 138 of the Negotiable Instruments Act, 1881, which
+# is what makes the document a section 138 notice at all. Recorded here with
+# its basis so `LegalDraftEngine` may state it without the sender having
+# supplied it, which no other notice template may do.
+statutory_response_period_days: 15
+statutory_response_period_basis: >-
+  Proviso (c) to section 138, Negotiable Instruments Act, 1881: the offence is
+  complete only where the drawer fails to pay within fifteen days of receipt of
+  the demand notice. Quotation and page evidence:
+  tests/reference/negotiable_instruments_138_142.json (key: payment_opportunity).
+  The demand notice must itself be sent within thirty days of the sender
+  receiving the bank's information about the dishonour (proviso (b)).
+# A section 138 notice must state that non-payment will be followed by a
+# complaint under section 138 read with section 142 -- that statement is a
+# statutory requirement of the notice, not a threat this tool added. Every
+# other template stays subject to the `automatic_criminal_proceedings` rule.
+permitted_statements:
+  - automatic_criminal_proceedings
+particulars_fields:
+  - cheque_number
+  - cheque_date
+  - cheque_amount
+  - bank_name
+  - dishonour_reason
+  - dishonour_date
+trigger_phrases:
+  - cheque bounce
+  - check bounce
+  - chek bounce
+  - cheque bounce notice
+  - section 138
+  - dishonoured cheque
+  - cheque bounce ka notice banana hai
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: cheque_number
+    label: Cheque Number
+    hindi_label: चेक संख्या
+  - key: cheque_amount
+    label: Cheque Amount (Rs.)
+    hindi_label: चेक राशि (रु.)
+  - key: cheque_date
+    label: Cheque Date
+    hindi_label: चेक की तारीख
+    field_type: date
+  - key: bank_name
+    label: Drawee Bank Name
+    hindi_label: बैंक का नाम
+  - key: dishonour_reason
+    label: Reason for Dishonour
+    hindi_label: अनादरण का कारण
+  - key: dishonour_date
+    label: Date of Return Memo
+    hindi_label: रिटर्न मेमो की तारीख
+    field_type: date
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+field_synonyms:
+  cheque number: cheque_number
+  amount: cheque_amount
+  bank: bank_name
+  reason: dishonour_reason
+  address: applicant_address
+  respondent: respondent_name
+  place: place
+document_family: notice
+domain: financial
+subcategory: cheque_dishonour
+supported_issues:
+  - cheque_bounce
+  - payment_default
+user_roles:
+  - payee
+  - creditor
+opposite_party_roles:
+  - drawer
+  - debtor
+desired_reliefs:
+  - payment
+case_stages:
+  - pre_litigation
+forums: []
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - cheque bounce notice
+    - section 138 notice
+    - dishonoured cheque notice
+  hindi:
+    - चेक बाउंस नोटिस
+  hinglish:
+    - cheque bounce ka notice banana hai
+    - check bounce notice banao
+supporting_documents:
+  - dishonoured cheque
+  - bank return memo
+  - underlying agreement or invoice
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: true
+  court_fee_check: false
+  advocate_review_recommended: true
+template_status: production
+template_version: "1.0"

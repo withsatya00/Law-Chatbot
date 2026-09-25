@@ -1,0 +1,61 @@
+draft_id: experience_certificate_request
+name: Experience Certificate Request
+hindi_name: अनुभव प्रमाण पत्र अनुरोध
+category: Application
+advocate_register: false
+description: >-
+  An application to a former/current employer requesting an experience
+  certificate covering the applicant's period of employment.
+authority_label: The Human Resources Manager,
+applicable_acts_hint: []
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  experience certificate requested and the period of employment/designation
+  held, using only the details given.
+legal_enrichment_hints: []
+trigger_phrases:
+  - experience certificate request
+  - experience certificate
+  - experience letter
+  - anubhav praman patra
+  - अनुभव प्रमाण पत्र अनुरोध
+  - अनुभव प्रमाण पत्र
+required_fields:
+  - key: applicant_name
+    label: Employee Name
+    hindi_label: कर्मचारी का नाम
+  - key: designation
+    label: Designation Held
+    hindi_label: धारित पद
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: information_sought
+    label: Period of Employment and Purpose (list each point)
+    hindi_label: रोजगार अवधि और उद्देश्य (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: employment_start_date
+    label: Date of Joining
+    hindi_label: शामिल होने की तारीख
+    field_type: date
+    required: false
+  - key: employment_end_date
+    label: Date of Leaving
+    hindi_label: छोड़ने की तारीख
+    field_type: date
+    required: false
+field_synonyms:
+  position: designation
+  post: designation
+  place: place

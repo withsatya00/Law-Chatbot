@@ -1,0 +1,119 @@
+draft_id: legal_notice
+name: General Legal Notice
+hindi_name: सामान्य कानूनी नोटिस
+category: Notice
+description: >-
+  A general-purpose legal notice to a party before initiating civil action,
+  sent personally or through an advocate, as explicitly selected.
+authority_label: "To,"
+subject_template: "Legal notice for {expected_relief}"
+applicable_acts_hint:
+  - Code of Civil Procedure, 1908
+applicable_sections_hint: []
+drafting_notes: >-
+  Respect representation_mode exactly. In self mode the applicant sends and
+  signs the notice personally; never call that person "my client" and never
+  add an advocate. In advocate mode the notice may say it is issued on behalf
+  of the client and the signature block identifies the advocate. State a
+  numeric response period only when response_deadline_days is actually
+  supplied; this general notice has no automatic statutory default.
+legal_enrichment_hints:
+  - statutory notice requirement
+  - right to legal recourse
+  - liability for non-compliance
+trigger_phrases:
+  - legal notice
+  - kanooni notice
+  - kanuni notice
+  - notice banana hai
+  - notice bhejni hai
+  - draft a legal notice
+  - legal notice banana hai
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+    help_text: Describe what happened, in plain language.
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: representation_mode
+    label: Representation Mode (self or advocate)
+    hindi_label: प्रतिनिधित्व का प्रकार (स्वयं या अधिवक्ता)
+    required: false
+    help_text: >-
+      Enter "self" if the sender will sign personally, or "advocate" if a
+      lawyer is issuing it for the sender. Defaults to self; the engine never
+      assumes a lawyer-client relationship.
+  - key: advocate_name
+    label: Advocate Name (only for advocate mode)
+    hindi_label: अधिवक्ता का नाम (केवल अधिवक्ता मोड में)
+    required: false
+    help_text: Leave blank in self mode. Advocate mode uses this name in the signature block.
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: response_deadline_days
+    label: Days given to respond
+    hindi_label: जवाब देने हेतु दिनों की संख्या
+    field_type: number
+    required: false
+    help_text: Optional user-selected period. No deadline is inserted if left blank.
+  - key: claim_amount
+    label: Claim Amount (Rs.), if applicable
+    hindi_label: दावा राशि (रु.), यदि लागू हो
+    required: false
+    must_appear_verbatim: true
+    help_text: >-
+      Leave blank for a non-monetary notice. When given, this exact figure
+      must appear in the generated notice (e.g. in the Facts or Prayer
+      section) -- not just a general reference to "the amount"/"the deposit".
+field_synonyms:
+  address: applicant_address
+  my address: applicant_address
+  respondent address: respondent_address
+  their address: respondent_address
+  respondent: respondent_name
+  facts: facts
+  relief: expected_relief
+  place: place
+  mobile: applicant_mobile
+  phone: applicant_mobile
+  amount: claim_amount
+  deposit: claim_amount
+  deposit amount: claim_amount
+  days: response_deadline_days
+  deadline: response_deadline_days
+  response deadline: response_deadline_days
+  notice period: response_deadline_days
+  representation: representation_mode
+  representation mode: representation_mode
+  signer mode: representation_mode
+  advocate: advocate_name
+  advocate name: advocate_name

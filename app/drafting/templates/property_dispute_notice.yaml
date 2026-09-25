@@ -1,0 +1,81 @@
+draft_id: property_dispute_notice
+name: Property Dispute Notice
+hindi_name: संपत्ति विवाद नोटिस
+category: Notice
+description: >-
+  A legal notice regarding a dispute over property (encroachment, illegal
+  possession, boundary dispute, or title dispute), demanding cessation and
+  restoration.
+authority_label: "To,"
+subject_template: "Legal notice regarding dispute over property at {property_address}"
+applicable_acts_hint:
+  - Transfer of Property Act, 1882
+  - Specific Relief Act, 1963
+applicable_sections_hint: []
+drafting_notes: >-
+  State the applicant's right/title over the property, the nature of the
+  dispute (encroachment, illegal possession, boundary, or title), and demand
+  cessation of the wrongful act and restoration within 15 days, failing
+  which appropriate civil (and, if applicable, criminal) proceedings will be
+  initiated, based strictly on the facts stated by the applicant.
+legal_enrichment_hints:
+  - title and possession over immovable property
+  - encroachment
+  - civil suit for injunction/possession
+trigger_phrases:
+  - property dispute notice
+  - property dispute
+  - encroachment notice
+  - illegal possession notice
+  - zameen vivad
+  - संपत्ति विवाद नोटिस
+  - जमीन विवाद
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: property_address
+    label: Property Address / Description
+    hindi_label: संपत्ति का पता / विवरण
+    field_type: textarea
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (title deed, sale deed, survey map, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  respondent: respondent_name
+  property: property_address
+  place: place

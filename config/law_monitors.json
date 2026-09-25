@@ -1,0 +1,36 @@
+[
+  {
+    "title": "MHA new criminal laws listing",
+    "url": "https://www.mha.gov.in/en/commoncontent/new-criminal-laws",
+    "topic": "criminal-law-listing",
+    "content_selector": "table.cols-3",
+    "interval_hours": 24,
+    "enabled": true
+  },
+  {
+    "title": "Uttar Pradesh Acts listing - first page",
+    "url": "https://upvidhai.gov.in/Act-hi.aspx",
+    "state_code": "UP",
+    "topic": "acts-listing-first-page",
+    "content_selector": "table.table",
+    "interval_hours": 24,
+    "enabled": true
+  },
+  {
+    "title": "Uttar Pradesh ordinances listing",
+    "url": "https://upvidhai.gov.in/Ordinance-hi.aspx",
+    "state_code": "UP",
+    "topic": "ordinances-listing",
+    "content_selector": "table.table",
+    "interval_hours": 24,
+    "enabled": true
+  },
+  {
+    "title": "MP Code - unavailable during activation (HTTP 404)",
+    "url": "https://code.mp.gov.in/content/Eng/index.aspx",
+    "state_code": "MP",
+    "topic": "state-legislation",
+    "interval_hours": 24,
+    "enabled": false
+  }
+]

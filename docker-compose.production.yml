@@ -1,0 +1,62 @@
+# Standalone deployment definition; do NOT merge with the development compose.
+# Supply authenticated private MongoDB/Redis endpoints and secrets via the environment.
+services:
+  api:
+    build: .
+    environment: &runtime
+      ENVIRONMENT: production
+      MONGODB_URI: ${MONGODB_URI:?Set an authenticated private MongoDB URI}
+      POSTGRESQL_URL: ${POSTGRESQL_URL:?Set a TLS-enabled PostgreSQL URL}
+      REDIS_URL: ${REDIS_URL:?Set an authenticated private Redis URL}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Set a random JWT secret}
+      SECRETS_ENCRYPTION_KEY: ${SECRETS_ENCRYPTION_KEY:?Set an encryption secret}
+      API_CORS_ORIGINS: ${API_CORS_ORIGINS:?Set a JSON array of exact HTTPS origins}
+      LLM_PROVIDER: ${LLM_PROVIDER:?Set the tested LLM provider}
+      LLM_FALLBACK_PROVIDERS: ${LLM_FALLBACK_PROVIDERS:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      CLAUDE_API_KEY: ${CLAUDE_API_KEY:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      MONGODB_DATABASE: ${MONGODB_DATABASE:-legal_ai_assistant}
+      KB_AUTOMATION_ENABLED: ${KB_AUTOMATION_ENABLED:-false}
+      KB_AUTOMATION_INTERVAL_MINUTES: ${KB_AUTOMATION_INTERVAL_MINUTES:-60}
+      KB_AUTOMATION_MANIFEST: ${KB_AUTOMATION_MANIFEST:-./config/kb_sources.json}
+      KB_AUTOMATION_MAX_DOWNLOAD_MB: ${KB_AUTOMATION_MAX_DOWNLOAD_MB:-25}
+      KB_AUTOMATION_MAX_ATTEMPTS: ${KB_AUTOMATION_MAX_ATTEMPTS:-4}
+      KB_AUTOMATION_SOURCE_REFRESH_HOURS: ${KB_AUTOMATION_SOURCE_REFRESH_HOURS:-24}
+      KB_AUTOMATION_ADAPTER_ALLOWLIST: ${KB_AUTOMATION_ADAPTER_ALLOWLIST:-}
+      KB_PRODUCTION_REQUIRED_JURISDICTIONS: ${KB_PRODUCTION_REQUIRED_JURISDICTIONS:-UP,DL,MH,GA,DH}
+      KB_RELEASE_EVALUATION_MAX_AGE_HOURS: ${KB_RELEASE_EVALUATION_MAX_AGE_HOURS:-168}
+      KB_RELEASE_MIN_EVALUATION_SCORE: ${KB_RELEASE_MIN_EVALUATION_SCORE:-0.95}
+      KB_REVIEW_SLA_HOURS: ${KB_REVIEW_SLA_HOURS:-72}
+      KB_CANARY_RECHECK_HOURS: ${KB_CANARY_RECHECK_HOURS:-24}
+      KB_MALWARE_SCAN_COMMAND: ${KB_MALWARE_SCAN_COMMAND:-clamscan}
+    # One API process until distributed KB job claiming is deployed and tested.
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes: &storage
+      - storage:/app/storage
+      - models:/home/app/.cache/huggingface
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+  worker:
+    build: .
+    command: ["python", "scripts/run_phase3_worker.py"]
+    environment: *runtime
+    volumes: *storage
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+volumes:
+  storage:
+  models:

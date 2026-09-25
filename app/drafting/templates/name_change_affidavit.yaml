@@ -1,0 +1,69 @@
+draft_id: name_change_affidavit
+name: Name Change Affidavit
+hindi_name: नाम परिवर्तन शपथपत्र
+category: Affidavit
+description: >-
+  A sworn affidavit declaring a change of name from a former name to a new
+  name, for submission before a notary or authority (e.g. for gazette
+  publication, updating official records).
+authority_label: "Before the Notary Public / Competent Authority,"
+applicable_acts_hint:
+  - Bharatiya Sakshya Adhiniyam, 2023
+applicable_sections_hint: []
+drafting_notes: >-
+  State the deponent's former name, the new name now to be used, and the
+  reason for the change if given, numbered as separate paragraphs ('I say
+  that...'). Never add, embellish, or infer any fact the deponent did not
+  state. End with the standard verification clause.
+legal_enrichment_hints:
+  - gazette notification requirement
+  - updating official records after name change
+trigger_phrases:
+  - name change affidavit
+  - name change
+  - naam parivartan
+  - naam badalna hai
+  - नाम परिवर्तन शपथपत्र
+  - नाम बदलना
+required_fields:
+  - key: applicant_name
+    label: New Name
+    hindi_label: नया नाम
+  - key: former_name
+    label: Former Name
+    hindi_label: पुराना नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: affidavit_purpose
+    label: Purpose of Name Change
+    hindi_label: नाम परिवर्तन का उद्देश्य
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    required: false
+  - key: deponent_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (ID proof, gazette copy, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  former name: former_name
+  old name: former_name
+  new name: applicant_name
+  purpose: affidavit_purpose
+  place: place

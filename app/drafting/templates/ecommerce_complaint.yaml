@@ -1,0 +1,97 @@
+draft_id: ecommerce_complaint
+name: E-commerce Complaint
+hindi_name: ई-कॉमर्स शिकायत
+category: Complaint
+description: >-
+  A complaint against an e-commerce platform/seller regarding a defective,
+  undelivered, or misrepresented product ordered online, filed under the
+  Consumer Protection (E-Commerce) Rules, 2020.
+authority_label: "Before the District Consumer Disputes Redressal Commission,"
+subject_template: "Complaint regarding order {order_id} on {platform_name}"
+applicable_acts_hint:
+  - Consumer Protection Act, 2019
+  - Consumer Protection (E-Commerce) Rules, 2020
+applicable_sections_hint:
+  - Section 35, Consumer Protection Act, 2019
+drafting_notes: >-
+  Frame the complaint identifying the e-commerce platform, the order, the
+  defect/deficiency (defective product, non-delivery, or misrepresentation),
+  and the relief sought (refund, replacement, or compensation), based
+  strictly on the facts stated by the applicant.
+legal_enrichment_hints:
+  - e-commerce platform liability
+  - grievance officer escalation before commission complaint
+trigger_phrases:
+  - ecommerce complaint
+  - e-commerce complaint
+  - online order complaint
+  - online shopping complaint
+  - amazon flipkart complaint
+  - ई-कॉमर्स शिकायत
+  - ऑनलाइन ऑर्डर शिकायत
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: platform_name
+    label: E-commerce Platform Name
+    hindi_label: ई-कॉमर्स प्लेटफॉर्म का नाम
+  - key: order_id
+    label: Order ID
+    hindi_label: ऑर्डर आईडी
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: purchase_date
+    label: Order Date
+    hindi_label: ऑर्डर तारीख
+    field_type: date
+    required: false
+  - key: amount_paid
+    label: Amount Paid (Rs.)
+    hindi_label: भुगतान की गई राशि (रु.)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (order confirmation, chat screenshots, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  platform: platform_name
+  order id: order_id
+  order: order_id
+  amount: amount_paid
+  order date: purchase_date
+  place: place

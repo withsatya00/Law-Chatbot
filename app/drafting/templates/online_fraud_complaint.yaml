@@ -1,0 +1,107 @@
+draft_id: online_fraud_complaint
+name: Online Fraud Complaint
+hindi_name: ऑनलाइन धोखाधड़ी शिकायत
+category: Complaint
+description: >-
+  A written complaint to the Cyber Crime Cell reporting an online fraud
+  (e-commerce scam, fake website, phishing, etc.) and requesting
+  investigation and recovery of the defrauded amount.
+authority_label: The Officer In-charge, Cyber Crime Cell,
+subject_template: "Complaint regarding online fraud of Rs. {fraud_amount}"
+applicable_acts_hint:
+  - Information Technology Act, 2000
+  - Bharatiya Nyaya Sanhita, 2023
+applicable_sections_hint:
+  - Section 66D, Information Technology Act, 2000 (cheating by personation using computer resource)
+  - Section 318 BNS (cheating)
+drafting_notes: >-
+  Request the Cyber Crime Cell to register the complaint, trace the
+  fraudulent transaction/website/seller, and take steps to recover the
+  amount, based strictly on the facts, transaction details, and evidence
+  stated by the applicant. Recommend also reporting on the National Cyber
+  Crime Reporting Portal (cybercrime.gov.in) where relevant.
+legal_enrichment_hints:
+  - National Cyber Crime Reporting Portal
+  - transaction reversal request to bank
+  - preservation of digital evidence
+trigger_phrases:
+  - online fraud complaint
+  - online fraud
+  - ecommerce fraud
+  - fake website fraud
+  - online paisa fraud
+  - ऑनलाइन धोखाधड़ी शिकायत
+  - ऑनलाइन फ्रॉड
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: fraud_amount
+    label: Amount Defrauded (Rs.)
+    hindi_label: धोखाधड़ी की गई राशि (रु.)
+  - key: transaction_id
+    label: Transaction ID / UTR Number
+    hindi_label: लेनदेन आईडी / UTR नंबर
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Transaction Date
+    hindi_label: लेनदेन की तारीख
+    field_type: date
+    required: false
+  - key: bank_name
+    label: Bank Name
+    hindi_label: बैंक का नाम
+    required: false
+  - key: accused_details
+    label: Seller / Website / Fraudster Details (if known)
+    hindi_label: विक्रेता/वेबसाइट/धोखेबाज़ का विवरण (यदि ज्ञात हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (screenshots, receipts, chats, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  amount: fraud_amount
+  transaction id: transaction_id
+  utr: transaction_id
+  date: incident_date
+  bank: bank_name
+  place: place
+  accused: accused_details
+  seller: accused_details

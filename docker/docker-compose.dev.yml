@@ -1,0 +1,10 @@
+services:
+  api:
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    volumes:
+      - ./app:/app/app
+      - ./storage:/app/storage
+
+  streamlit:
+    volumes:
+      - ./streamlit_app:/app/streamlit_app

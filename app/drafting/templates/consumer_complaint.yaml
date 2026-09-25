@@ -1,0 +1,190 @@
+draft_id: consumer_complaint
+name: Consumer Complaint
+hindi_name: उपभोक्ता शिकायत
+category: Complaint
+description: >-
+  A complaint to the District/State Consumer Disputes Redressal Commission
+  regarding a defective product, deficient service, or unfair trade practice.
+authority_label: "Before the District Consumer Disputes Redressal Commission,"
+applicable_acts_hint:
+  - Consumer Protection Act, 2019
+applicable_sections_hint:
+  - Section 35
+drafting_notes: >-
+  Frame the complaint under Section 35 of the Consumer Protection Act, 2019,
+  identifying the deficiency in service or defect in goods alleged, and the
+  relief sought (refund, replacement, compensation, or all as stated by the
+  applicant). State the alleged deficiency and unfair trade practice as the
+  complainant's assertion on the facts stated, not as a settled finding --
+  that determination is for the Commission.
+  The "Legal Position" section must also establish, in one short paragraph,
+  why this Commission has jurisdiction, using ONLY the supplied fields: the
+  complainant's place of residence (from the applicant's address), where the
+  cause of action arose or the transaction took place (from the place field),
+  the opposite party's location (from the respondent's address), and the value
+  of the goods/services plus compensation claimed (from the amount paid),
+  which decides District vs. State vs. National. Where one of those fields was
+  not supplied, name the ones that were and say the remaining basis is to be
+  established on the record -- never assume or invent a jurisdictional fact.
+legal_enrichment_hints:
+  - deficiency in service
+  - consumer rights
+  - compensation
+trigger_phrases:
+  - consumer complaint
+  - defective product
+  - deficient service
+  - refund nahi mila
+  - consumer complaint banana hai
+  - consumer forum
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: product_or_service
+    label: Product / Service Concerned
+    hindi_label: संबंधित उत्पाद/सेवा
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+  - key: purchase_date
+    label: Date of Purchase / Service
+    hindi_label: खरीद/सेवा की तारीख
+    field_type: date
+  - key: amount_paid
+    label: Amount Paid (Rs.)
+    hindi_label: भुगतान की गई राशि (रु.)
+  - key: defect_or_deficiency
+    label: Defect in the Goods / Deficiency in the Service
+    hindi_label: वस्तु में दोष / सेवा में कमी
+    field_type: textarea
+  - key: prior_correspondence
+    label: Earlier Complaints / Correspondence with the Opposite Party
+    hindi_label: पूर्व शिकायत/पत्राचार (नहीं है तो "नहीं" लिखें)
+    field_type: textarea
+  - key: cause_of_action_place
+    label: Place where the Purchase / Service / Cause of Action Arose
+    hindi_label: खरीद/सेवा/वाद-कारण का स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: invoice_number
+    label: Invoice / Order / Reference Number
+    hindi_label: चालान / ऑर्डर / संदर्भ संख्या
+    required: false
+    help_text: >-
+      The bill, invoice, order or booking reference for the purchase. Rendered
+      as its own particular so the Commission can match the complaint to the
+      transaction.
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+# Rendered as the complaint's own labelled particulars block, in this order.
+particulars_fields:
+  - product_or_service
+  - defect_or_deficiency
+  - purchase_date
+  - invoice_number
+  - amount_paid
+  - cause_of_action_place
+  - prior_correspondence
+field_synonyms:
+  invoice: invoice_number
+  invoice number: invoice_number
+  order number: invoice_number
+  bill: invoice_number
+  reference number: invoice_number
+  defect: defect_or_deficiency
+  deficiency: defect_or_deficiency
+  correspondence: prior_correspondence
+  earlier complaint: prior_correspondence
+  product: product_or_service
+  service: product_or_service
+  amount: amount_paid
+  seller: respondent_name
+  place: place
+document_family: complaint
+domain: consumer
+subcategory: goods_and_services
+supported_issues:
+  - defective_goods
+  - deficient_service
+  - unfair_trade_practice
+user_roles:
+  - consumer
+  - complainant
+opposite_party_roles:
+  - seller
+  - service_provider
+desired_reliefs:
+  - refund
+  - replacement
+  - compensation
+case_stages:
+  - pre_litigation
+forums:
+  - consumer_commission
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - consumer complaint
+    - consumer forum complaint
+  hindi:
+    - उपभोक्ता शिकायत
+  hinglish:
+    - consumer complaint banana hai
+    - refund nahi mila
+supporting_documents:
+  - purchase invoice or receipt
+  - warranty card
+  - photographs of the defect
+  - prior correspondence with the seller
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: true
+  court_fee_check: true
+  advocate_review_recommended: false
+template_status: production
+template_version: "1.0"

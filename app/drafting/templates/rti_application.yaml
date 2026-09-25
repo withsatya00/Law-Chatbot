@@ -1,0 +1,95 @@
+draft_id: rti_application
+name: RTI Application
+hindi_name: सूचना का अधिकार आवेदन
+category: Application
+description: >-
+  An application under the Right to Information Act, 2005 seeking specific
+  information from a public authority.
+authority_label: The Public Information Officer,
+applicable_acts_hint:
+  - Right to Information Act, 2005
+applicable_sections_hint:
+  - Section 6(1)
+drafting_notes: >-
+  Format the information sought as a clearly numbered list of specific
+  questions/requests under Section 6(1) of the RTI Act, 2005. State that a
+  reply is sought within 30 days as prescribed by the Act (or 48 hours if it
+  concerns life or liberty). Do not request information the applicant did not
+  specify.
+  The RTI Act (Section 3) reserves the right to information to citizens of
+  India, so the opening of "Applicant Details" should include a plain
+  statement that the applicant is a citizen of India seeking information
+  under Section 6(1) of the Act -- this is a standard element of a real RTI
+  application, not something the applicant needs to separately supply.
+  If a fee payment mode was supplied, state it plainly (e.g. "a fee of
+  Rs. 10/- is enclosed by [mode]") immediately before the numbered
+  information request; if the applicant marked themselves Below Poverty
+  Line, state the fee is exempted under the Act instead, and reference the
+  BPL certificate as an annexure. If neither was supplied, note briefly that
+  the prescribed fee will be paid as required, rather than inventing an
+  amount or payment mode.
+legal_enrichment_hints:
+  - citizen's right to information
+  - public authority's statutory duty to respond
+trigger_phrases:
+  - rti
+  - right to information
+  - rti application
+  - rti banana hai
+  - suchna ka adhikar
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: public_authority_name
+    label: Public Authority / Department Name
+    hindi_label: लोक प्राधिकरण/विभाग का नाम
+  - key: information_sought
+    label: Information Sought (list each point)
+    hindi_label: मांगी गई जानकारी (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: period_concerned
+    label: Time Period the Information Relates To
+    hindi_label: जिस अवधि से जानकारी संबंधित है
+    required: false
+  - key: bpl_status
+    label: Below Poverty Line (fee exemption)?
+    hindi_label: गरीबी रेखा से नीचे (शुल्क छूट)?
+    required: false
+    help_text: If yes, attach BPL certificate as annexure; application fee is exempted.
+  - key: fee_payment_mode
+    label: Application Fee Payment Mode (e.g. IPO, DD, court fee stamp, online)
+    hindi_label: आवेदन शुल्क भुगतान का माध्यम (जैसे आईपीओ, डीडी, कोर्ट फीस स्टाम्प, ऑनलाइन)
+    required: false
+field_synonyms:
+  department: public_authority_name
+  authority: public_authority_name
+  information: information_sought
+  place: place

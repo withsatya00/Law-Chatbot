@@ -1,0 +1,89 @@
+draft_id: product_return_request
+name: Product Return Request
+hindi_name: उत्पाद वापसी अनुरोध
+category: Notice
+description: >-
+  A written request to a seller/manufacturer asking for return, replacement,
+  or refund of a product, before escalating to a formal consumer complaint.
+authority_label: "To,"
+subject_template: "Request for return/replacement/refund of {product_or_service}"
+applicable_acts_hint:
+  - Consumer Protection Act, 2019
+# Mirrors consumer_notice.yaml's own citation -- a defective product is the
+# same "deficiency" concept the Act defines, not a distinct provision.
+applicable_sections_hint:
+  - Section 2(11), Consumer Protection Act, 2019 (deficiency)
+drafting_notes: >-
+  State the product purchased, the defect/reason for return, and request
+  return, replacement, or refund within a reasonable period, based strictly
+  on the facts stated by the applicant. This is a first request, not yet a
+  formal legal notice threatening litigation.
+legal_enrichment_hints:
+  - seller's return/refund policy
+  - consumer commission complaint as next step if unresolved
+trigger_phrases:
+  - product return request
+  - return product
+  - refund request
+  - replace product
+  - उत्पाद वापसी अनुरोध
+  - रिफंड अनुरोध
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Seller / Manufacturer Name
+    hindi_label: विक्रेता / निर्माता का नाम
+  - key: respondent_address
+    label: Seller / Manufacturer Address
+    hindi_label: विक्रेता / निर्माता का पता
+    field_type: textarea
+  - key: product_or_service
+    label: Product Concerned
+    hindi_label: संबंधित उत्पाद
+  - key: facts
+    label: Facts of the Case / Reason for Return (in your own words)
+    hindi_label: मामले के तथ्य / वापसी का कारण (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief (return / replacement / refund)
+    hindi_label: अपेक्षित राहत (वापसी / प्रतिस्थापन / धनवापसी)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: purchase_date
+    label: Purchase Date
+    hindi_label: खरीद तारीख
+    field_type: date
+    required: false
+  - key: amount_paid
+    label: Amount Paid (Rs.)
+    hindi_label: भुगतान की गई राशि (रु.)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (invoice, photographs, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  seller: respondent_name
+  product: product_or_service
+  purchase date: purchase_date
+  amount: amount_paid
+  place: place

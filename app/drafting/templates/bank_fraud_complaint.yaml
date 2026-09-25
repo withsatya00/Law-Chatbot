@@ -1,0 +1,97 @@
+draft_id: bank_fraud_complaint
+name: Bank Fraud Complaint
+hindi_name: बैंक धोखाधड़ी शिकायत
+category: Complaint
+description: >-
+  A written complaint to the bank's fraud/grievance department (and, where
+  needed, the Cyber Crime Cell) reporting an unauthorized transaction or
+  banking fraud, requesting reversal and investigation.
+authority_label: The Branch Manager / Nodal Officer (Fraud & Grievance),
+subject_template: "Complaint regarding unauthorized transaction of Rs. {fraud_amount} in account"
+applicable_acts_hint:
+  - Reserve Bank of India (Customer Protection) Directions, 2017
+  - Information Technology Act, 2000
+applicable_sections_hint:
+  - RBI Limited Liability of Customers circular
+drafting_notes: >-
+  Request the bank to block further transactions, reverse the unauthorized
+  debit as per RBI's zero/limited liability guidelines, and investigate the
+  fraud, based strictly on the facts and transaction details stated by the
+  applicant. Recommend also filing on the National Cyber Crime Reporting
+  Portal where relevant.
+legal_enrichment_hints:
+  - RBI zero/limited liability of customer
+  - 3-working-day reporting window for zero liability
+  - National Cyber Crime Reporting Portal
+trigger_phrases:
+  - bank fraud complaint
+  - unauthorized transaction
+  - bank fraud
+  - account se paisa kata
+  - बैंक धोखाधड़ी शिकायत
+  - अनधिकृत लेनदेन
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: bank_name
+    label: Bank Name
+    hindi_label: बैंक का नाम
+  - key: fraud_amount
+    label: Amount Involved (Rs.)
+    hindi_label: शामिल राशि (रु.)
+  - key: transaction_id
+    label: Transaction ID / UTR Number
+    hindi_label: लेनदेन आईडी / UTR नंबर
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Transaction Date
+    hindi_label: लेनदेन की तारीख
+    field_type: date
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (SMS alerts, statement, screenshots, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  bank: bank_name
+  amount: fraud_amount
+  transaction id: transaction_id
+  utr: transaction_id
+  date: incident_date
+  place: place

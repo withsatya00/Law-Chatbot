@@ -1,0 +1,167 @@
+draft_id: police_complaint
+name: Police Complaint (Application to SHO)
+hindi_name: पुलिस शिकायत (थाना प्रभारी को आवेदन)
+category: Complaint
+description: >-
+  A written complaint/application to the Station House Officer requesting
+  registration of an FIR or appropriate police action.
+authority_label: The Station House Officer,
+subject_template: "Application for registration of FIR / appropriate police action"
+applicable_acts_hint:
+  - Bharatiya Nagarik Suraksha Sanhita, 2023
+applicable_sections_hint:
+  - Section 173
+drafting_notes: >-
+  Request the Station House Officer to register the complaint, investigate,
+  and take appropriate legal action under the applicable law, based strictly
+  on the facts, witnesses, and evidence stated by the applicant. Do not name
+  any accused or allege any offence beyond what the applicant has stated.
+  The Prayer's registration request should use the real Indian convention
+  for this document: request that "an FIR be registered under Section 173
+  of the Bharatiya Nagarik Suraksha Sanhita, 2023" (naming that specific
+  section, since it is the actual provision governing registration of
+  information in a cognizable case) rather than a generic "take action"
+  request, provided the facts as narrated describe a cognizable matter; if
+  they do not clearly do so, request registration/appropriate action without
+  asserting the cognizable classification.
+legal_enrichment_hints:
+  - investigation request
+  - police responsibility
+  - public safety
+  - protection of the complainant
+trigger_phrases:
+  - police complaint
+  - fir
+  - fir draft
+  - thana shikayat
+  - police complaint banana hai
+  - complaint to sho
+  - station house officer
+  - पुलिस शिकायत
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: police_station
+    label: Police Station
+    hindi_label: पुलिस थाना
+  - key: incident_location
+    label: Incident Location
+    hindi_label: घटना स्थल
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Incident Date
+    hindi_label: घटना की तारीख
+    field_type: date
+    required: false
+  - key: incident_time
+    label: Incident Time
+    hindi_label: घटना का समय
+    required: false
+  - key: accused_details
+    label: Accused / Opposite Party Details (if known)
+    hindi_label: आरोपी/प्रतिपक्ष का विवरण (यदि ज्ञात हो)
+    field_type: textarea
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  police station: police_station
+  thana: police_station
+  location: incident_location
+  date: incident_date
+  time: incident_time
+  witness: witnesses
+  place: place
+document_family: complaint
+domain: criminal
+subcategory: general_criminal
+supported_issues:
+  - theft
+  - fraud
+  - assault
+  - harassment
+  - cognizable_offence
+user_roles:
+  - complainant
+  - victim
+opposite_party_roles:
+  - accused
+desired_reliefs:
+  - fir_registration
+  - investigation
+  - protection
+case_stages:
+  - pre_litigation
+forums:
+  - police_station
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - police complaint
+    - fir
+    - complaint to sho
+  hindi:
+    - पुलिस शिकायत
+  hinglish:
+    - police complaint banao
+    - fir likho
+    - thana shikayat
+supporting_documents:
+  - identity proof
+  - photographs or videos of the incident
+  - witness details
+  - any prior correspondence
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: false
+  court_fee_check: false
+  advocate_review_recommended: false
+template_status: production
+template_version: "1.0"

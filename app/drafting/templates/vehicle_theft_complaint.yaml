@@ -1,0 +1,115 @@
+draft_id: vehicle_theft_complaint
+name: Vehicle Theft Complaint
+hindi_name: वाहन चोरी शिकायत
+category: Complaint
+description: >-
+  A written complaint to the Station House Officer reporting the theft of a
+  vehicle and requesting registration of an FIR and recovery action.
+authority_label: The Station House Officer,
+subject_template: "Complaint regarding theft of {vehicle_type} bearing registration number {vehicle_number}"
+applicable_acts_hint:
+  - Bharatiya Nyaya Sanhita, 2023
+  - Bharatiya Nagarik Suraksha Sanhita, 2023
+  - Motor Vehicles Act, 1988
+applicable_sections_hint:
+  - Section 303 BNS (theft)
+  - Section 173 BNSS
+drafting_notes: >-
+  Request the Station House Officer to register an FIR for theft of the
+  vehicle, circulate the vehicle details to check-posts and other police
+  stations, and take steps for recovery, based strictly on the facts stated
+  by the applicant. Do not name any accused unless stated.
+legal_enrichment_hints:
+  - vehicle theft investigation
+  - insurance claim requirement of FIR copy
+  - circulation to check-posts
+trigger_phrases:
+  - vehicle theft complaint
+  - bike theft
+  - car theft
+  - scooter stolen
+  - vehicle stolen
+  - vahan chori
+  - gaadi chori
+  - मेरी गाड़ी चोरी हो गई
+  - वाहन चोरी शिकायत
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: police_station
+    label: Police Station
+    hindi_label: पुलिस थाना
+  - key: vehicle_type
+    label: Vehicle Type (car / bike / scooter / other)
+    hindi_label: वाहन का प्रकार
+  - key: vehicle_number
+    label: Vehicle Registration Number
+    hindi_label: वाहन पंजीकरण संख्या
+  - key: incident_location
+    label: Location Vehicle Was Stolen From
+    hindi_label: चोरी का स्थान
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Theft Date
+    hindi_label: चोरी की तारीख
+    field_type: date
+    required: false
+  - key: incident_time
+    label: Approximate Theft Time
+    hindi_label: चोरी का अनुमानित समय
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (RC, insurance, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  police station: police_station
+  thana: police_station
+  location: incident_location
+  vehicle: vehicle_type
+  registration number: vehicle_number
+  date: incident_date
+  time: incident_time
+  witness: witnesses
+  place: place

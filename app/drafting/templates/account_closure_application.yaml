@@ -1,0 +1,77 @@
+draft_id: account_closure_application
+name: Account Closure Application
+hindi_name: खाता बंद करने का आवेदन
+category: Application
+description: >-
+  An application to a bank requesting closure of a savings/current account
+  and settlement of the balance.
+authority_label: The Branch Manager,
+applicable_acts_hint:
+  - Reserve Bank of India (Customer Service) Directions
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  account to be closed, the reason if given, and how the remaining balance
+  should be settled (cheque, transfer to another account, etc.). Do not
+  invent a reason the applicant did not give.
+legal_enrichment_hints:
+  - account closure balance settlement
+  - surrender of unused chequebook/debit card
+trigger_phrases:
+  - account closure application
+  - close my account
+  - bank account band
+  - account close karna hai
+  - खाता बंद करने का आवेदन
+  - खाता बंद करना है
+required_fields:
+  - key: applicant_name
+    label: Applicant Name (Account Holder)
+    hindi_label: आवेदक का नाम (खाताधारक)
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: bank_name
+    label: Bank Name and Branch
+    hindi_label: बैंक का नाम और शाखा
+  - key: account_number
+    label: Account Number
+    hindi_label: खाता संख्या
+  - key: information_sought
+    label: Closure Instructions (list each point)
+    hindi_label: बंद करने के निर्देश (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (chequebook, debit card, passbook, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  bank: bank_name
+  account number: account_number
+  account: account_number
+  place: place

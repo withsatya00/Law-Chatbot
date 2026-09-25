@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "cases": [
+    {"id": "drafts-en", "message": "show my saved drafts", "language": "english", "workflow": "saved_drafts"},
+    {"id": "drafts-hi", "message": "मेरी सेव की हुई ड्राफ्ट दिखाओ", "language": "hindi", "workflow": "saved_drafts"},
+    {"id": "drafts-hinglish", "message": "meri saved drafts dikhao", "language": "hinglish", "workflow": "saved_drafts"},
+    {"id": "compare-en", "message": "compare these two documents", "language": "english", "workflow": "document_compare"},
+    {"id": "review-en", "message": "review this rental agreement for missing clauses", "language": "english", "workflow": "document_review"},
+    {"id": "timeline-en", "message": "prepare a timeline from this document", "language": "english", "workflow": "document_timeline"},
+    {"id": "evidence-en", "message": "organize my evidence into annexures", "language": "english", "workflow": "evidence_organize"},
+    {"id": "case-list-en", "message": "show my cases", "language": "english", "workflow": "case_list"},
+    {"id": "case-create-en", "message": "create a new case", "language": "english", "workflow": "case_create"},
+    {"id": "lawyer-summary-en", "message": "prepare a lawyer-ready summary", "language": "english", "workflow": "lawyer_summary"},
+    {"id": "jobs-en", "message": "show my background jobs", "language": "english", "workflow": "background_jobs"},
+    {"id": "downloads-en", "message": "show my downloads", "language": "english", "workflow": "downloads"},
+    {"id": "preferences-en", "message": "show my preferences", "language": "english", "workflow": "preferences"},
+    {"id": "notary-en", "message": "prepare my document for notarization", "language": "english", "workflow": "notarization_prepare"},
+    {"id": "notary-hinglish", "message": "mujhe document notary ke liye prepare karna hai", "language": "hinglish", "workflow": "notarization_prepare"},
+    {"id": "notary-status-en", "message": "show my notarization status", "language": "english", "workflow": "notarization_status"},
+    {"id": "clear-en", "message": "clear this conversation", "language": "english", "workflow": "clear_conversation"},
+    {"id": "delete-en", "message": "delete my data", "language": "english", "workflow": "delete_my_data"},
+    {"id": "ordinary-law-en", "message": "What does anticipatory bail mean?", "language": "english", "workflow": null},
+    {"id": "ordinary-cyber-hinglish", "message": "cyber fraud kya hota hai", "language": "hinglish", "workflow": null}
+  ]
+}

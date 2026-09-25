@@ -1,0 +1,96 @@
+{
+  "title": "Legal AI Assistant",
+  "uid": "legal-ai-assistant",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "timezone": "browser",
+  "time": { "from": "now-6h", "to": "now" },
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "HTTP status codes",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        { "expr": "http_status_200", "legendFormat": "200 OK", "refId": "A" },
+        { "expr": "http_status_400", "legendFormat": "400 Bad Request", "refId": "B" },
+        { "expr": "http_status_401", "legendFormat": "401 Unauthorized", "refId": "C" },
+        { "expr": "http_status_404", "legendFormat": "404 Not Found", "refId": "D" },
+        { "expr": "http_status_429", "legendFormat": "429 Rate Limited", "refId": "E" },
+        { "expr": "http_status_500", "legendFormat": "500 Server Error", "refId": "F" },
+        { "expr": "http_unhandled_errors", "legendFormat": "Unhandled errors", "refId": "G" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Response cache hit rate",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        { "expr": "response_cache_hit", "legendFormat": "Response cache hit", "refId": "A" },
+        { "expr": "response_cache_miss", "legendFormat": "Response cache miss", "refId": "B" },
+        { "expr": "retrieval_cache_hit", "legendFormat": "Retrieval cache hit", "refId": "C" },
+        { "expr": "retrieval_cache_miss", "legendFormat": "Retrieval cache miss", "refId": "D" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Vector search backend health",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "description": "atlas_vector_search_fallback rising means Atlas $vectorSearch is failing and every query is degrading to the local cosine scan (see app/rag/vector_store.py). local_vector_scan_truncated rising means that fallback's own scan cap (LOCAL_VECTOR_SCAN_LIMIT) is being hit.",
+      "targets": [
+        { "expr": "atlas_vector_search_ok", "legendFormat": "Atlas search OK", "refId": "A" },
+        { "expr": "atlas_vector_search_fallback", "legendFormat": "Atlas search fallback", "refId": "B" },
+        { "expr": "local_vector_scan_truncated", "legendFormat": "Local scan cap hit", "refId": "C" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "RAG pipeline latency (avg ms)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        { "expr": "embedding_latency_ms_avg_ms", "legendFormat": "Embedding", "refId": "A" },
+        { "expr": "query_rewrite_latency_ms_avg_ms", "legendFormat": "Query rewrite", "refId": "B" },
+        { "expr": "retriever_latency_ms_avg_ms", "legendFormat": "Retriever", "refId": "C" },
+        { "expr": "response_cache_lookup_latency_ms_avg_ms", "legendFormat": "Response cache lookup", "refId": "D" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "ms" }, "overrides": [] }
+    },
+    {
+      "id": 5,
+      "title": "RAG pipeline latency (max ms)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        { "expr": "embedding_latency_ms_max_ms", "legendFormat": "Embedding", "refId": "A" },
+        { "expr": "query_rewrite_latency_ms_max_ms", "legendFormat": "Query rewrite", "refId": "B" },
+        { "expr": "retriever_latency_ms_max_ms", "legendFormat": "Retriever", "refId": "C" },
+        { "expr": "response_cache_lookup_latency_ms_max_ms", "legendFormat": "Response cache lookup", "refId": "D" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "ms" }, "overrides": [] }
+    },
+    {
+      "id": 6,
+      "title": "Sample count (RAG pipeline calls observed)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "description": "Capped at the most recent 500 observations per metric (see MetricStore.observe_ms) -- a plateau here means the window is full, not that calls stopped.",
+      "targets": [
+        { "expr": "embedding_latency_ms_count", "legendFormat": "Embedding", "refId": "A" },
+        { "expr": "query_rewrite_latency_ms_count", "legendFormat": "Query rewrite", "refId": "B" },
+        { "expr": "retriever_latency_ms_count", "legendFormat": "Retriever", "refId": "C" },
+        { "expr": "response_cache_lookup_latency_ms_count", "legendFormat": "Response cache lookup", "refId": "D" }
+      ]
+    }
+  ]
+}

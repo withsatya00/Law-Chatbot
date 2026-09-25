@@ -1,0 +1,36 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+# The console renders PDF previews of exported drafts (`streamlit[pdf]`) and
+# imports `app.*` schemas, so it needs the same font coverage as the API image
+# -- without Indic faces a Hindi preview renders as tofu boxes. It does NOT
+# need Tesseract or Poppler: OCR runs server-side, in the API container.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        fontconfig \
+        fonts-noto-core \
+        fonts-deva \
+        fonts-beng \
+        fonts-taml \
+        fonts-telu \
+        fonts-knda \
+        fonts-mlym \
+        fonts-guru \
+        fonts-gujr \
+        fonts-orya \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml ./
+# See Dockerfile: CPU-only torch keeps the CUDA wheel set out of the image.
+RUN pip install --upgrade pip \
+    && pip install --index-url https://download.pytorch.org/whl/cpu torch \
+    && pip install ".[dev]"
+COPY streamlit_app ./streamlit_app
+
+EXPOSE 8501
+CMD ["streamlit", "run", "streamlit_app/app.py", "--server.address", "0.0.0.0"]

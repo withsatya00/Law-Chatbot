@@ -1,0 +1,60 @@
+draft_id: affidavit
+name: General Affidavit
+hindi_name: सामान्य शपथपत्र
+category: Affidavit
+description: >-
+  A sworn, general-purpose affidavit affirming facts stated by the deponent,
+  for submission before a notary or authority.
+authority_label: "Before the Notary Public / Competent Authority,"
+applicable_acts_hint:
+  - Indian Evidence Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  This is a sworn affidavit. State only the facts explicitly affirmed by the
+  deponent, numbered as separate paragraphs (e.g. 'I say that...'). Never
+  add, embellish, or infer any fact the deponent did not state — an affidavit
+  with fabricated or unstated facts is a false affidavit and must never be
+  produced. End with the standard verification clause affirming the contents
+  are true to the deponent's knowledge and belief.
+legal_enrichment_hints:
+  - evidentiary weight of a sworn statement
+  - consequences of a false declaration
+trigger_phrases:
+  - affidavit
+  - shapath patra
+  - halafnama
+  - affidavit banana hai
+  - शपथपत्र
+  - शपथ पत्र
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: affidavit_purpose
+    label: Purpose of Affidavit
+    hindi_label: शपथपत्र का उद्देश्य
+    help_text: E.g. name change, address proof, income declaration, lost document.
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    required: false
+  - key: deponent_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+field_synonyms:
+  purpose: affidavit_purpose
+  place: place

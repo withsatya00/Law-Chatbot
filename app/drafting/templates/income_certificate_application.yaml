@@ -1,0 +1,75 @@
+draft_id: income_certificate_application
+name: Income Certificate Application
+hindi_name: आय प्रमाण पत्र आवेदन
+category: Application
+description: >-
+  An application to the Tehsildar/Revenue Officer requesting issuance of an
+  income certificate.
+authority_label: The Tehsildar / Revenue Officer,
+applicable_acts_hint: []
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  income certificate requested, the purpose it is needed for, and the
+  applicant's annual income if given. Do not invent an income figure the
+  applicant did not state.
+legal_enrichment_hints:
+  - income certificate for scholarship/scheme eligibility
+trigger_phrases:
+  - income certificate application
+  - income certificate
+  - aay praman patra
+  - income proof application
+  - आय प्रमाण पत्र आवेदन
+  - आय प्रमाण पत्र
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: information_sought
+    label: Purpose of Certificate (list each point)
+    hindi_label: प्रमाण पत्र का उद्देश्य (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: annual_income
+    label: Annual Income (Rs., if known)
+    hindi_label: वार्षिक आय (रु., यदि ज्ञात हो)
+    required: false
+  - key: bpl_status
+    label: Below Poverty Line (fee exemption)?
+    hindi_label: गरीबी रेखा से नीचे (शुल्क छूट)?
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (ration card, salary slip, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  income: annual_income
+  place: place

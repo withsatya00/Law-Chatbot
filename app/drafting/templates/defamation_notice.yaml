@@ -1,0 +1,88 @@
+draft_id: defamation_notice
+name: Defamation Notice
+hindi_name: मानहानि नोटिस
+category: Notice
+description: >-
+  A legal notice to a party who has made defamatory statements, demanding an
+  unconditional apology, retraction, and cessation, failing which legal
+  action for defamation will be initiated.
+authority_label: "To,"
+subject_template: "Legal notice for defamation"
+applicable_acts_hint:
+  - Bharatiya Nyaya Sanhita, 2023
+  - Code of Civil Procedure, 1908
+applicable_sections_hint:
+  - Section 356 BNS (defamation)
+drafting_notes: >-
+  State the defamatory statement made, the manner and platform of
+  publication, and the harm caused to the applicant's reputation, and demand
+  an unconditional written apology, retraction, and cessation within 15
+  days, failing which both civil and criminal proceedings for defamation
+  will be initiated, based strictly on the facts stated by the applicant.
+legal_enrichment_hints:
+  - injury to reputation
+  - civil and criminal defamation remedies
+  - publication and retraction
+trigger_phrases:
+  - defamation notice
+  - defamation
+  - character assassination notice
+  - badnaam kiya
+  - मानहानि नोटिस
+  - मानहानि
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: facts
+    label: Facts of the Case / Defamatory Statement Made (in your own words)
+    hindi_label: मामले के तथ्य / मानहानिकारक कथन (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Date of Defamatory Publication
+    hindi_label: मानहानिकारक प्रकाशन की तारीख
+    field_type: date
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (screenshots, recordings, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  respondent: respondent_name
+  date: incident_date
+  witness: witnesses
+  place: place

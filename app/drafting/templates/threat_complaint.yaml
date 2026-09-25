@@ -1,0 +1,120 @@
+draft_id: threat_complaint
+name: Threat Complaint
+hindi_name: धमकी शिकायत
+category: Complaint
+description: >-
+  A written complaint to the Station House Officer reporting a criminal
+  threat/intimidation and requesting appropriate police action and
+  protection.
+authority_label: The Station House Officer,
+subject_template: "Complaint regarding criminal intimidation/threat by {accused_details}"
+applicable_acts_hint:
+  - Bharatiya Nyaya Sanhita, 2023
+  - Bharatiya Nagarik Suraksha Sanhita, 2023
+applicable_sections_hint:
+  - Section 351 BNS (criminal intimidation)
+  - Section 173 BNSS
+drafting_notes: >-
+  Request the Station House Officer to take the complaint on record and take
+  appropriate action to ensure the applicant's safety, based strictly on the
+  facts, mode of threat, and evidence stated by the applicant. Do NOT assert
+  or assume that an FIR will or must be registered -- ordinary criminal
+  intimidation (BNS s.351(2)) is classified non-cognizable under the BNSS
+  First Schedule, and the police may lawfully record it only as a
+  non-cognizable report (BNSS s.174) rather than an FIR unless the facts
+  actually stated by the applicant show the aggravated form (s.351(3):
+  threat of death, grievous hurt, arson, or imputing unchastity), which is
+  cognizable. Whether the offence is cognizable on these facts, and whether
+  an FIR follows, is for the police to determine -- this document requests
+  registration only if the user's own relief says so, and never states that
+  outcome as certain.
+legal_enrichment_hints:
+  - criminal intimidation
+  - personal safety and protection
+  - evidence of threat (messages, calls, witnesses)
+trigger_phrases:
+  - threat complaint
+  - threatening me
+  - criminal intimidation complaint
+  - dhamki complaint
+  - mujhe dhamki di
+  - मुझे धमकी दी गई
+  - धमकी शिकायत
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: police_station
+    label: Police Station
+    hindi_label: पुलिस थाना
+  - key: incident_location
+    label: Incident Location
+    hindi_label: घटना स्थल
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Incident Date
+    hindi_label: घटना की तारीख
+    field_type: date
+    required: false
+  - key: incident_time
+    label: Incident Time
+    hindi_label: घटना का समय
+    required: false
+  - key: accused_details
+    label: Accused / Opposite Party Details (if known)
+    hindi_label: आरोपी/प्रतिपक्ष का विवरण (यदि ज्ञात हो)
+    field_type: textarea
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (messages, call records, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  police station: police_station
+  thana: police_station
+  location: incident_location
+  date: incident_date
+  time: incident_time
+  witness: witnesses
+  place: place
+  accused: accused_details

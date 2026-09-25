@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "purpose": "Authoritative text for the cheque-bounce answer-correctness test. Every 'anchor' below is a verbatim, whitespace-normalized quotation from the repository file named in 'source', re-checked against that file on every test run. Nothing here is written from model memory.",
+  "source": {
+    "act_name": "Negotiable Instruments Act, 1881",
+    "source_document": "Negotiable_Instruments_Act_1881_Complete_Act.pdf",
+    "repository_path": "storage/knowledge_base/Negotiable_Instruments_Act_1881_Complete_Act.pdf",
+    "sha256": "fcdc5f55f34d1f30f95267337c8e5c4339fdd0d5e326facf35aa552febfb8357",
+    "page_count": 32,
+    "extraction_method": "embedded_text",
+    "verification_status": "pending_review",
+    "amendment_status": "unknown",
+    "government_source": null,
+    "url": null,
+    "provenance_note": "This is a bare-Act PDF already present in this repository's knowledge base. No publisher, gazette reference or URL is printed in the file itself, and no human in this repository has compared it against the issuing authority's own publication. Per docs/SOURCE_GOVERNANCE.md section 1 it is therefore recorded as 'pending_review', not 'verified'. Recording an official URL here without having checked one would be exactly the fabrication these tests exist to prevent.",
+    "human_review_task": "Compare this file against the Legislative Department's published text of the Negotiable Instruments Act, 1881 (Chapter XVII), then record the result via POST /admin/phase3/legal-sources/{source_id}/review with evidence_url and review_notes, and set amendment_status. Until that is done the assistant must keep disclosing this source as unverified."
+  },
+  "propositions": [
+    {
+      "key": "presentation_window",
+      "section": "138",
+      "page_number": 28,
+      "anchor": "presented to the bank within a period of six months from the date on which it is drawn or within the period of its validity, whichever is earlier",
+      "proposition": "Proviso (a): section 138 does not apply unless the cheque was presented to the bank within six months of the date it was drawn, or within its validity period, whichever is earlier."
+    },
+    {
+      "key": "dishonour_prerequisite",
+      "section": "138",
+      "page_number": 28,
+      "anchor": "is returned by the bank u npaid, either because of the amount of money standing to the credit of that account is insufficient to honour the cheque or that it exceeds the amount arranged to be paid from that account",
+      "proposition": "The offence arises where the cheque is returned unpaid for insufficiency of funds or because it exceeds the arranged amount."
+    },
+    {
+      "key": "notice_deadline",
+      "section": "138",
+      "page_number": 28,
+      "anchor": "makes a demand for the payment of the said amount of money by giving a notice; in writing, to the drawer of the cheque, 5[within thirty days] of the receipt of information by him from the bank regarding the return of the cheque as unpaid",
+      "proposition": "Proviso (b): the payee or holder in due course must make the written demand within THIRTY days of receiving the bank's information that the cheque was returned unpaid. The bracketed footnote marker '5' is present in the source text and marks the 2002 substitution of 'within fifteen days'."
+    },
+    {
+      "key": "payment_opportunity",
+      "section": "138",
+      "page_number": 28,
+      "anchor": "the drawer of such cheque fails to make the payment of the said amount of money to the payee or, as the case may be, to the holder in due course of the cheque, within fifteen days of the receipt of the said notice",
+      "proposition": "Proviso (c): the offence is complete only when the drawer fails to pay within FIFTEEN days of receiving the notice."
+    },
+    {
+      "key": "complaint_by_payee_in_writing",
+      "section": "142",
+      "page_number": 29,
+      "anchor": "no court shall take cognizance of any offence punishable under section 138 except upon a complaint, in writing, made by the payee or, as the case may be, the holder in due course of the cheque",
+      "proposition": "Section 142(1)(a): cognizance requires a written complaint by the payee or holder in due course."
+    },
+    {
+      "key": "cause_of_action_and_limitation",
+      "section": "142",
+      "page_number": 29,
+      "anchor": "such complaint is made within one month of th e date on which the cause of action arises under clause (c) of the proviso to section 138",
+      "proposition": "Section 142(1)(b): the complaint must be filed within ONE MONTH of the date the cause of action arises, and the cause of action arises under proviso (c) to section 138 -- that is, on expiry of the fifteen-day payment window."
+    },
+    {
+      "key": "limitation_condonation",
+      "section": "142",
+      "page_number": 29,
+      "anchor": "the cognizance of a complaint may be taken by the Court after the prescribed period, if the complainant satisfies the Court that he had sufficient ca use for not making a complaint within such period",
+      "proposition": "Proviso to section 142(1)(b): a court may take cognizance after the period on sufficient cause shown."
+    },
+    {
+      "key": "competent_court",
+      "section": "142",
+      "page_number": 29,
+      "anchor": "no court inferior to that of a Metropolitan Magistrate or a Judicial Magistrate of the first class shall try any offence punishable under section 138",
+      "proposition": "Section 142(1)(c): trial is by a Metropolitan Magistrate or Judicial Magistrate of the first class, or higher."
+    },
+    {
+      "key": "territorial_jurisdiction",
+      "section": "142",
+      "page_number": 29,
+      "anchor": "shall be inquired into and tried only by a court within whose local jurisdiction",
+      "proposition": "Section 142(2): territorial jurisdiction is fixed by where the payee's collecting branch is (cheque delivered for collection through an account) or where the drawee branch is (cheque presented otherwise than through an account). Which limb applies depends on facts the user has not supplied."
+    }
+  ],
+  "not_established_by_this_source": [
+    {
+      "claim": "A civil suit for recovery of the cheque amount is available in addition to the section 138 prosecution.",
+      "why_not_recorded": "Section 138 says the punishment is 'without prejudice to any other provision of this Act'. It says nothing about a civil suit, and no provision of the Negotiable Instruments Act in this file states that one lies. The proposition may well be correct, but it is not established by this source, so it must be omitted or marked for advocate verification rather than asserted."
+    },
+    {
+      "claim": "The demand notice must give the drawer fifteen days from the date of dishonour.",
+      "why_not_recorded": "The source states two different periods -- thirty days to SEND the notice (proviso (b)) and fifteen days for the drawer to PAY after receiving it (proviso (c)). Collapsing them into one fifteen-day rule was the observed defect."
+    }
+  ]
+}

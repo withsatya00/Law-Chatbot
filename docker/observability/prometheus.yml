@@ -1,0 +1,12 @@
+# Scrapes the API's own in-process counters (app/observability/metrics.py)
+# via the unauthenticated internal endpoint (app/main.py's `/internal/metrics`)
+# -- see that endpoint's docstring for why it's separate from the
+# admin-guarded GET /admin/phase3/metrics/prometheus.
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: legal-ai-assistant
+    static_configs:
+      - targets: ["api:8000"]
+    metrics_path: /internal/metrics

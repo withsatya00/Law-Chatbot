@@ -1,0 +1,56 @@
+draft_id: tc_application
+name: Transfer Certificate (TC) Application
+hindi_name: स्थानांतरण प्रमाण पत्र (टीसी) आवेदन
+category: Application
+advocate_register: false
+description: >-
+  An application to the Principal/Head of Institution requesting a Transfer
+  Certificate (TC) on leaving the school/college.
+authority_label: The Principal,
+applicable_acts_hint: []
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  transfer certificate requested and the reason for leaving if given, using
+  only the details given.
+legal_enrichment_hints: []
+trigger_phrases:
+  - tc application
+  - transfer certificate application
+  - transfer certificate
+  - tc chahiye
+  - स्थानांतरण प्रमाण पत्र आवेदन
+  - टीसी आवेदन
+required_fields:
+  - key: applicant_name
+    label: Student Name
+    hindi_label: छात्र का नाम
+  - key: student_class_roll
+    label: Class / Roll Number / Course
+    hindi_label: कक्षा / रोल नंबर / पाठ्यक्रम
+  - key: applicant_mobile
+    label: Parent / Guardian Mobile Number
+    hindi_label: माता-पिता/अभिभावक का मोबाइल नंबर
+    field_type: tel
+  - key: information_sought
+    label: Reason for Leaving / Details (list each point)
+    hindi_label: छोड़ने का कारण / विवरण (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (fee receipt, ID card, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  class: student_class_roll
+  roll number: student_class_roll
+  place: place

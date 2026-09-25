@@ -1,0 +1,67 @@
+draft_id: mou_agreement
+name: Memorandum of Understanding (MOU)
+hindi_name: समझौता ज्ञापन (एमओयू)
+category: Contract
+description: >-
+  A memorandum of understanding between two parties recording their mutual
+  intent to collaborate on a stated matter, generally not intended to be
+  legally binding in the same way as a full contract.
+authority_label: "N/A — agreement between the parties named below."
+subject_template: "Memorandum of Understanding for {contract_purpose}"
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft an MOU between the two parties (Party of the First Part and Party
+  of the Second Part) covering the purpose of collaboration and the
+  terms/conditions given, based strictly on the facts stated. Note in the
+  recitals that this MOU records mutual intent and is non-binding except
+  for the confidentiality/exclusivity terms specifically agreed, unless the
+  facts state otherwise.
+legal_enrichment_hints:
+  - non-binding nature of an MOU (unless stated otherwise)
+  - mutual intent to collaborate
+trigger_phrases:
+  - mou
+  - memorandum of understanding
+  - samjhauta gyapan
+  - समझौता ज्ञापन
+  - एमओयू
+required_fields:
+  - key: party_a_name
+    label: First Party Name
+    hindi_label: प्रथम पक्ष का नाम
+  - key: party_a_address
+    label: First Party Address
+    hindi_label: प्रथम पक्ष का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Second Party Name
+    hindi_label: द्वितीय पक्ष का नाम
+  - key: party_b_address
+    label: Second Party Address
+    hindi_label: द्वितीय पक्ष का पता
+    field_type: textarea
+  - key: contract_purpose
+    label: Purpose of Collaboration
+    hindi_label: सहयोग का उद्देश्य
+    field_type: textarea
+  - key: terms
+    label: Terms and Conditions (in your own words)
+    hindi_label: नियम और शर्तें (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: term_duration
+    label: Duration of MOU
+    hindi_label: एमओयू की अवधि
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  purpose: contract_purpose
+  place: place

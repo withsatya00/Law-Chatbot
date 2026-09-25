@@ -1,0 +1,82 @@
+draft_id: contract_breach_notice
+name: Contract Breach Notice
+hindi_name: अनुबंध उल्लंघन नोटिस
+category: Notice
+description: >-
+  A legal notice to a party alleging breach of a contract and demanding
+  performance, compensation, or rectification within a stated period.
+authority_label: "To,"
+subject_template: "Legal notice for breach of contract dated {contract_date}"
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+  - Specific Relief Act, 1963
+applicable_sections_hint: []
+drafting_notes: >-
+  State the terms of the contract that were breached, the manner of breach,
+  and demand performance/rectification/compensation within 15 days, failing
+  which appropriate legal proceedings will be initiated for breach of
+  contract, based strictly on the facts stated by the applicant.
+legal_enrichment_hints:
+  - breach of contract
+  - specific performance
+  - damages for breach
+trigger_phrases:
+  - contract breach notice
+  - breach of contract
+  - contract violation notice
+  - anubandh ullanghan
+  - अनुबंध उल्लंघन नोटिस
+  - contract todna
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: contract_date
+    label: Contract Date
+    hindi_label: अनुबंध की तारीख
+  - key: facts
+    label: Facts of the Case / Nature of Breach (in your own words)
+    hindi_label: मामले के तथ्य / उल्लंघन की प्रकृति (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: dues_amount
+    label: Compensation / Damages Claimed (Rs., if any)
+    hindi_label: दावा किया गया मुआवज़ा (रु., यदि कोई हो)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (contract copy, correspondence, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  respondent: respondent_name
+  contract date: contract_date
+  place: place
+  compensation: dues_amount

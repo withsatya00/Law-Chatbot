@@ -1,0 +1,14 @@
+# Disposable services: no real storage mounts, no production database access.
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "127.0.0.1:37017:27017"
+    tmpfs:
+      - /data/db
+      - /data/configdb
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "127.0.0.1:36379:6379"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]

@@ -1,0 +1,52 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+storage/
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# scripts/run_tests.ps1 defaults --basetemp here, to avoid the broken ACL
+# on %TEMP%\pytest-of-<user> documented in WINDOWS_SETUP.md.
+.pytest-local/
+
+# --- Generated / private artifacts. None of these are source. ---------------
+# Sample and probe documents produced by drafting, export and notarization
+# runs. They are real generated legal documents containing whatever names,
+# amounts and addresses the run was given -- treat them as private data, not
+# as fixtures, and regenerate rather than commit.
+output/
+tmp/
+*.pkl
+scratch_test_output.pdf
+
+# Captured live chat sessions from scripts/run_15_tests*.py -- real answers
+# with real session/message ids.
+scripts/test_results/
+
+# Local editor/tool backups.
+*.bak
+
+# A broken virtualenv kept only for local reference.
+.venv.broken-satya/
+
+# Fixed-name temp dirs some test fixtures create directly in the repo root
+# instead of a real tempdir (law_monitor/machine_verify tests).
+.pytest_tmp_*/
+
+# Stray Windows artifact from a misdirected redirect.
+nul
+
+.tmp/
+*.log
+
+models/
+unsloth_compiled_cache/
+*.safetensors
+*.gguf
+
+out.txt
+out2.txt
+qa_bugfix_verify_*.json

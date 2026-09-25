@@ -1,0 +1,61 @@
+draft_id: identity_affidavit
+name: Identity Affidavit
+hindi_name: पहचान शपथपत्र
+category: Affidavit
+description: >-
+  A sworn affidavit declaring the deponent's identity, used where identity
+  documents carry minor discrepancies (e.g. spelling variations, date of
+  birth mismatches across documents) that need to be reconciled.
+authority_label: "Before the Notary Public / Competent Authority,"
+applicable_acts_hint:
+  - Bharatiya Sakshya Adhiniyam, 2023
+applicable_sections_hint: []
+drafting_notes: >-
+  State the deponent's identity, the identity documents held, and the
+  discrepancy being reconciled if given, numbered as separate paragraphs
+  ('I say that...'). Never add, embellish, or infer any fact the deponent
+  did not state. End with the standard verification clause.
+legal_enrichment_hints:
+  - reconciling discrepancies across identity documents
+trigger_phrases:
+  - identity affidavit
+  - identity proof affidavit
+  - pehchan shapath patra
+  - identity ka affidavit
+  - पहचान शपथपत्र
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: affidavit_purpose
+    label: Purpose of Affidavit / Discrepancy Being Reconciled
+    hindi_label: शपथपत्र का उद्देश्य / सुलझाई जा रही विसंगति
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    required: false
+  - key: deponent_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (Aadhaar, PAN, passport, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  purpose: affidavit_purpose
+  place: place

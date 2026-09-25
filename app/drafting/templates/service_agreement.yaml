@@ -1,0 +1,107 @@
+draft_id: service_agreement
+name: Service Agreement
+hindi_name: सेवा अनुबंध
+category: Contract
+description: >-
+  An agreement between a service provider and a client setting out the
+  scope of services, fees, and terms governing the engagement.
+authority_label: "N/A — agreement between the parties named below."
+subject_template: "Service Agreement for {contract_purpose}"
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft a service agreement between the service provider (Party of the
+  First Part) and client (Party of the Second Part) covering the scope of
+  services, fees/payment terms, and the terms/conditions given, based
+  strictly on the facts stated.
+legal_enrichment_hints:
+  - scope of services and deliverables
+  - payment schedule and fees
+  - confidentiality of client information
+trigger_phrases:
+  - service agreement
+  - services contract
+  - seva anubandh
+  - सेवा अनुबंध
+  - सर्विस एग्रीमेंट
+required_fields:
+  - key: party_a_name
+    label: Service Provider Name
+    hindi_label: सेवा प्रदाता का नाम
+  - key: party_a_address
+    label: Service Provider Address
+    hindi_label: सेवा प्रदाता का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Client Name
+    hindi_label: ग्राहक का नाम
+  - key: party_b_address
+    label: Client Address
+    hindi_label: ग्राहक का पता
+    field_type: textarea
+  - key: contract_purpose
+    label: Scope of Services
+    hindi_label: सेवाओं का दायरा
+    field_type: textarea
+  - key: terms
+    label: Fees and Terms and Conditions (in your own words)
+    hindi_label: शुल्क और नियम व शर्तें (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: term_duration
+    label: Duration of Agreement
+    hindi_label: अनुबंध की अवधि
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  provider: party_a_name
+  client: party_b_name
+  scope: contract_purpose
+  place: place
+document_family: contract
+domain: business
+subcategory: services
+supported_issues:
+  - new_engagement_setup
+user_roles:
+  - service_provider
+  - client
+opposite_party_roles:
+  - client
+  - service_provider
+desired_reliefs:
+  - formalize_engagement
+case_stages:
+  - pre_litigation
+forums: []
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - service agreement
+    - services contract
+  hindi:
+    - सेवा अनुबंध
+  hinglish:
+    - service agreement banao
+    - seva anubandh banana hai
+supporting_documents:
+  - id proof of both parties
+  - business registration documents (if applicable)
+review_requirements:
+  jurisdiction_check: false
+  limitation_check: false
+  court_fee_check: false
+  advocate_review_recommended: true
+template_status: production
+template_version: "1.0"

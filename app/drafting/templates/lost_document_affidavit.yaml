@@ -1,0 +1,111 @@
+draft_id: lost_document_affidavit
+name: Lost Document Affidavit
+hindi_name: दस्तावेज़ खोने का शपथपत्र
+category: Affidavit
+document_family: affidavit
+domain: civil
+description: >-
+  A sworn declaration that an identified original document was lost, normally
+  used while seeking a duplicate from the issuing institution or authority.
+authority_label: "Before the Notary Public / Competent Authority"
+applicable_acts_hint: []
+applicable_sections_hint: []
+drafting_notes: >-
+  This is an affidavit, not a police complaint or FIR application. Use only
+  numbered factual declarations supplied by the deponent. Do not add a search,
+  misuse apprehension, hardship, mental distress, undertaking, police action,
+  statutory provision, or complaint/GD number unless the user supplied it.
+  A police complaint is supporting information only and must never change the
+  document family. Do not print recipient, subject, prayer, request, salutation,
+  or complementary-close blocks. End with verification and a Deponent block;
+  do not fabricate a notarial act, seal, signature, or attestation.
+legal_enrichment_hints: []
+trigger_phrases:
+  - lost document affidavit
+  - affidavit for lost document
+  - lost certificate affidavit
+  - original certificate lost affidavit
+  - document loss affidavit
+  - dastavez khone ka affidavit
+  - kagaz khone ka halafnama
+  - certificate kho gaya affidavit
+  - दस्तावेज़ खोने का शपथपत्र
+  - खोए दस्तावेज़ का शपथपत्र
+  - प्रमाणपत्र खोने का शपथपत्र
+  - दस्तावेज़ गुम होने का हलफनामा
+  - कागज़ खोने का हलफनामा
+required_fields:
+  - key: applicant_name
+    label: Deponent Name
+    hindi_label: शपथकर्ता का नाम
+  - key: applicant_address
+    label: Deponent Address
+    hindi_label: शपथकर्ता का पता
+    field_type: textarea
+  - key: lost_document_name
+    label: Name of Document Lost
+    hindi_label: खोए हुए दस्तावेज़ का नाम
+  - key: document_identifier
+    label: Document / Certificate Number
+    hindi_label: दस्तावेज़ / प्रमाणपत्र संख्या
+    must_appear_verbatim: true
+  - key: loss_date
+    label: Date of Loss
+    hindi_label: दस्तावेज़ खोने की तारीख
+    field_type: date
+  - key: loss_place
+    label: Place Where Document Was Lost
+    hindi_label: दस्तावेज़ खोने का स्थान
+  - key: affidavit_purpose
+    label: Purpose of Affidavit
+    hindi_label: शपथपत्र का उद्देश्य
+    help_text: E.g. applying to the issuing university for a duplicate certificate.
+  - key: facts
+    label: Circumstances of Loss (in your own words)
+    hindi_label: खोने की परिस्थितियाँ (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place of Verification
+    hindi_label: सत्यापन का स्थान
+optional_fields:
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता / पति का नाम
+    required: false
+  - key: deponent_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: issuing_authority
+    label: Issuing University / Authority
+    hindi_label: जारीकर्ता विश्वविद्यालय / प्राधिकरण
+    required: false
+  - key: qualification_year
+    label: Course / Passing Year
+    hindi_label: पाठ्यक्रम / उत्तीर्ण वर्ष
+    required: false
+  - key: prior_complaint_reference
+    label: Police Complaint / GD Reference (if any)
+    hindi_label: पुलिस शिकायत / जीडी संदर्भ (यदि उपलब्ध हो)
+    required: false
+  - key: available_documents
+    label: Available Supporting Documents
+    hindi_label: उपलब्ध सहायक दस्तावेज़
+    field_type: textarea
+    required: false
+field_synonyms:
+  document: lost_document_name
+  certificate: lost_document_name
+  certificate number: document_identifier
+  document number: document_identifier
+  loss date: loss_date
+  lost on: loss_date
+  loss place: loss_place
+  lost at: loss_place
+  university: issuing_authority
+  institution: issuing_authority
+  passing year: qualification_year
+  purpose: affidavit_purpose
+  complaint reference: prior_complaint_reference
+  place: place

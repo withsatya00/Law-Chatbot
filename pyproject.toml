@@ -1,0 +1,148 @@
+[project]
+name = "legal-ai-assistant"
+version = "0.1.0"
+description = "Production-grade Legal AI Assistant backend with RAG, document analysis, and multilingual chat."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.4.0",
+    "email-validator>=2.2.0",
+    "motor>=3.6.0",
+    "asyncpg>=0.30.0",
+    "redis>=5.0.8",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    # passlib 1.7.4 (its last release, 2020) self-tests bcrypt at first use
+    # via an internal `detect_wrap_bug` probe that reads `bcrypt.__about__`,
+    # an attribute bcrypt>=4.1 removed -- passlib's probe then misreads the
+    # resulting AttributeError as "password too long" and raises on EVERY
+    # hash/verify call, silently breaking register/login/admin-provisioning
+    # entirely (confirmed live: `create_privileged_user.py` failed on this
+    # exact error with the unpinned bcrypt 5.0.0 pip resolved). A pinned
+    # pre-4.1 bcrypt is the standard, widely-documented fix for this known
+    # passlib/bcrypt incompatibility -- not a downgrade of anything this
+    # project itself needs, since passlib is the only bcrypt consumer here.
+    "bcrypt<4.1",
+    "python-multipart>=0.0.9",
+    "httpx>=0.27.0",
+    "anthropic>=0.70.0",
+    "structlog>=24.4.0",
+    "orjson>=3.10.0",
+    "tenacity>=8.5.0",
+    "langdetect>=1.0.9",
+    "beautifulsoup4>=4.12.3",
+    "pypdf>=4.3.0",
+    "pypdfium2>=4.30,<6",
+    "pyHanko>=0.25.0",
+    "python-docx>=1.1.2",
+    "pytesseract>=0.3.13",
+    "pdf2image>=1.17.0",
+    "pillow>=10.4.0",
+    "numpy>=2.0.0",
+    # Bounded webm/opus decode for VAD before STT (app/services/voice_vad.py)
+    # -- ships its own statically-linked FFmpeg libs, so no system `ffmpeg`
+    # binary or Dockerfile change is needed.
+    "av>=13.0.0",
+    "sentence-transformers>=3.0.1",
+    "rank-bm25>=0.2.2",
+    "streamlit[pdf]>=1.37.0",
+    "weasyprint>=62.0",
+    # Verification QR codes on notarized documents. Pure Python, no native
+    # dependencies. See app/notarization/qr.py.
+    "segno>=1.6.1",
+    "pyyaml>=6.0.1",
+    "striprtf>=0.0.26",
+    "odfpy>=1.4.1",
+    # `app/core/clock.py` resolves the jurisdiction's civil date through
+    # `zoneinfo`, which reads the SYSTEM tz database. Windows ships none at
+    # all, and python:*-slim images ship none either, so `ZoneInfo("Asia/
+    # Kolkata")` raises `ZoneInfoNotFoundError` there without this. It was
+    # already present in the environment as a transitive dependency, which is
+    # exactly the kind of accident that breaks on the next resolve.
+    "tzdata>=2024.1",
+    "opentelemetry-api>=1.27.0",
+    "opentelemetry-sdk>=1.27.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.27.0",
+    "opentelemetry-instrumentation-fastapi>=0.48b0",
+    "opentelemetry-instrumentation-pymongo>=0.48b0",
+    "opentelemetry-instrumentation-redis>=0.48b0",
+]
+
+[build-system]
+requires = ["setuptools>=72.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["tests*", "streamlit_app*", "docker*", "docs*", "scripts*"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.23.8",
+    "pytest-cov>=5.0.0",
+    # Both linters are pinned to a major line on purpose. Ruff's DEFAULT rule
+    # set widened substantially between 0.5 and 0.16 (from ~4 families to 415
+    # rules), and mypy's strict-mode inference changes across majors -- with
+    # open-ended ranges, "ruff check and mypy are clean" is a claim that only
+    # holds on the machine it was last run on.
+    "ruff>=0.16.4,<0.17",
+    "mypy>=2.3,<3",
+    # Decodes the generated notarization QR the way a phone camera would, in
+    # `tests/test_notarization.py`. Without it that test is skipped and the
+    # suite proves only that the SVG is well-formed -- not that it SCANS,
+    # which is the entire point of putting a QR on a notarized document (a
+    # previous hand-rolled encoder produced structurally plausible codes that
+    # no decoder could read). Headless: no GUI/X11 dependencies.
+    "opencv-python-headless>=4.10.0"
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI declares request-scoped dependencies, uploads and form/query bindings
+# as CALLS in parameter defaults -- `user: User = Depends(current_user)`,
+# `file: UploadFile = File(...)`. That is the framework's documented and only
+# supported syntax; the object built at import time is an inert marker that
+# FastAPI resolves per request, so B008's actual hazard (one mutable default
+# shared across calls) does not arise. Declared centrally here, as ruff's own
+# FastAPI guidance prescribes, instead of a `# noqa: B008` on every route
+# signature in `app/api/`.
+extend-immutable-calls = [
+    "fastapi.Body",
+    "fastapi.Cookie",
+    "fastapi.Depends",
+    "fastapi.File",
+    "fastapi.Form",
+    "fastapi.Header",
+    "fastapi.Path",
+    "fastapi.Query",
+    "fastapi.Security",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests deliberately build naive local dates when exercising the drafting
+# engine's date rendering, which is itself locale/calendar-based and
+# timezone-free by design (see `app/drafting/localized_dates.py`).
+"tests/*" = ["DTZ011"]
+# `LegalReranker._topic_bonus` scores every chunk through a table of
+# "does the QUERY name this topic" -> "does the CHUNK actually cover it"
+# pairs. SIM102 wants each pair collapsed with `and`, which produces
+# 140-190 character conditions that `line-length = 100` above then rejects:
+# the two rules are in direct conflict for this specific shape, and the
+# nested form is the more readable of the two. One documented decision for
+# the whole table rather than seven identical inline suppressions.
+"app/rag/reranker.py" = ["SIM102"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true

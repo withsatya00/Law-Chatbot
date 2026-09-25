@@ -1,0 +1,66 @@
+draft_id: partnership_agreement
+name: Partnership Agreement
+hindi_name: साझेदारी अनुबंध
+category: Contract
+description: >-
+  An agreement between two partners setting out the terms of a business
+  partnership, including profit-sharing, capital contribution, and duties.
+authority_label: "N/A — agreement between the parties named below."
+subject_template: "Partnership Agreement for {contract_purpose}"
+applicable_acts_hint:
+  - Indian Partnership Act, 1932
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft a partnership agreement between the two partners (Party of the
+  First Part and Party of the Second Part) covering the nature of business,
+  profit/loss sharing ratio, capital contribution, and the terms/conditions
+  given, based strictly on the facts stated.
+legal_enrichment_hints:
+  - profit and loss sharing ratio
+  - capital contribution
+  - registration of partnership firm (optional but recommended)
+trigger_phrases:
+  - partnership agreement
+  - partnership deed
+  - business partnership
+  - saajhedari anubandh
+  - साझेदारी अनुबंध
+  - पार्टनरशिप एग्रीमेंट
+required_fields:
+  - key: party_a_name
+    label: First Partner Name
+    hindi_label: प्रथम साझेदार का नाम
+  - key: party_a_address
+    label: First Partner Address
+    hindi_label: प्रथम साझेदार का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Second Partner Name
+    hindi_label: द्वितीय साझेदार का नाम
+  - key: party_b_address
+    label: Second Partner Address
+    hindi_label: द्वितीय साझेदार का पता
+    field_type: textarea
+  - key: contract_purpose
+    label: Nature of Business
+    hindi_label: व्यवसाय की प्रकृति
+    field_type: textarea
+  - key: terms
+    label: Profit-Sharing, Capital Contribution and Other Terms (in your own words)
+    hindi_label: लाभ-हिस्सेदारी, पूंजी योगदान और अन्य शर्तें (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: term_duration
+    label: Duration of Partnership
+    hindi_label: साझेदारी की अवधि
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  business: contract_purpose
+  place: place

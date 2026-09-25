@@ -1,0 +1,144 @@
+draft_id: rent_agreement
+name: Rent Agreement
+hindi_name: किराया अनुबंध
+category: Contract
+description: >-
+  A rent/lease agreement between a landlord and tenant setting out the rent,
+  security deposit, term, and conditions of tenancy for a residential or
+  commercial property.
+authority_label: "N/A — agreement between the parties named below."
+subject_template: "Rent Agreement for premises at {rented_premises_address}"
+applicable_acts_hint:
+  - Transfer of Property Act, 1882
+  - Model Tenancy Act, 2021
+  - Registration Act, 1908
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft a rent agreement between the landlord (Party of the First Part) and
+  tenant (Party of the Second Part) covering the rented premises, monthly
+  rent, security deposit, and the terms/conditions given, based strictly on
+  the facts stated. Note that agreements exceeding 11 months typically
+  require registration under the Registration Act, 1908 — mention this only
+  if the term given warrants it.
+legal_enrichment_hints:
+  - security deposit refund terms
+  - maintenance responsibility
+  - registration requirement beyond 11 months
+trigger_phrases:
+  - rent agreement
+  - rental agreement
+  - lease agreement
+  - kiraya agreement
+  - किराया अनुबंध
+  - रेंट एग्रीमेंट
+  - किराया एग्रीमेंट
+  # `QueryNormalizer` (shared retrieval infrastructure `DraftIntentDetector`
+  # also runs every message through) expands "rent agreement" into this
+  # fixed synonym phrase, dropping the literal word "rent" entirely -- so
+  # "rent agreement banao"/"Rent agreement draft karo" normalize to "rental
+  # tenancy landlord tenant agreement banao"/"...draft karo" and, without
+  # this literal trigger phrase, matched no template at all despite plainly
+  # naming this exact document (confirmed live: pre-existing, not something
+  # this template's own YAML introduced).
+  - rental tenancy landlord tenant agreement
+required_fields:
+  - key: party_a_name
+    label: Landlord Name
+    hindi_label: मकान मालिक का नाम
+  - key: party_a_address
+    label: Landlord Address
+    hindi_label: मकान मालिक का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Tenant Name
+    hindi_label: किरायेदार का नाम
+  - key: party_b_address
+    label: Tenant Address
+    hindi_label: किरायेदार का पता
+    field_type: textarea
+  - key: rented_premises_address
+    label: Rented Premises Address
+    hindi_label: किराए की संपत्ति का पता
+    field_type: textarea
+  - key: monthly_rent_amount
+    label: Monthly Rent (Rs.)
+    hindi_label: मासिक किराया (रु.)
+    # Security finding D1: guarantees this figure is never silently dropped
+    # (LLM path or deterministic-timeout fallback alike) -- see
+    # `DraftField.must_appear_verbatim`'s docstring for the mechanism.
+    must_appear_verbatim: true
+  - key: security_deposit_amount
+    label: Security Deposit (Rs.)
+    hindi_label: सुरक्षा जमा राशि (रु.)
+    must_appear_verbatim: true
+  - key: terms
+    label: Terms and Conditions (in your own words)
+    hindi_label: नियम और शर्तें (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: tenancy_start_date
+    label: Tenancy Start Date
+    hindi_label: किरायेदारी प्रारंभ तिथि
+    field_type: date
+    required: false
+  - key: term_duration
+    label: Duration of Agreement
+    hindi_label: अनुबंध की अवधि
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  landlord: party_a_name
+  tenant: party_b_name
+  premises: rented_premises_address
+  rent: monthly_rent_amount
+  security deposit: security_deposit_amount
+  deposit: security_deposit_amount
+  place: place
+document_family: contract
+domain: property
+subcategory: tenancy
+supported_issues:
+  - new_tenancy_setup
+user_roles:
+  - landlord
+  - tenant
+opposite_party_roles:
+  - tenant
+  - landlord
+desired_reliefs:
+  - formalize_tenancy
+case_stages:
+  - pre_litigation
+forums: []
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - rent agreement
+    - rental agreement
+    - lease agreement
+  hindi:
+    - किराया अनुबंध
+  hinglish:
+    - kiraya agreement banao
+    - rent agreement banana hai
+supporting_documents:
+  - id proof of both parties
+  - address proof
+  - property ownership documents
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: false
+  court_fee_check: false
+  advocate_review_recommended: true
+template_status: production
+template_version: "1.0"

@@ -1,0 +1,80 @@
+draft_id: property_sale_agreement
+name: Property Sale Agreement
+hindi_name: संपत्ति विक्रय अनुबंध
+category: Contract
+description: >-
+  An agreement to sell immovable property between a seller and buyer, from
+  the seller's perspective, setting out the sale consideration, possession
+  handover, and conditions of sale ahead of the final sale deed/registration.
+authority_label: "N/A — agreement between the parties named below."
+subject_template: "Agreement to Sell property at {property_address}"
+applicable_acts_hint:
+  - Transfer of Property Act, 1882
+  - Registration Act, 1908
+  - Real Estate (Regulation and Development) Act, 2016
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft an agreement to sell between the seller (Party of the First Part)
+  and buyer/purchaser (Party of the Second Part) covering the property, sale
+  consideration, possession handover terms, and the terms/conditions given,
+  based strictly on the facts stated. Note that the actual transfer of title
+  requires a registered sale deed executed after this agreement.
+legal_enrichment_hints:
+  - possession handover
+  - clear and marketable title, no encumbrance
+  - registered sale deed as the operative conveyance
+trigger_phrases:
+  - property sale agreement
+  - agreement to sell property
+  - property sell agreement
+  - sampatti vikray anubandh
+  - संपत्ति विक्रय अनुबंध
+  - जमीन बेचने का अनुबंध
+required_fields:
+  - key: party_a_name
+    label: Seller Name
+    hindi_label: विक्रेता का नाम
+  - key: party_a_address
+    label: Seller Address
+    hindi_label: विक्रेता का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Buyer Name
+    hindi_label: क्रेता का नाम
+  - key: party_b_address
+    label: Buyer Address
+    hindi_label: क्रेता का पता
+    field_type: textarea
+  - key: property_address
+    label: Property Address / Description
+    hindi_label: संपत्ति का पता / विवरण
+    field_type: textarea
+  - key: sale_consideration_amount
+    label: Total Sale Consideration (Rs.)
+    hindi_label: कुल विक्रय प्रतिफल (रु.)
+    # Security finding D1: guarantees this figure is never silently dropped
+    # (LLM path or deterministic-timeout fallback alike).
+    must_appear_verbatim: true
+  - key: terms
+    label: Terms and Conditions / Possession Handover (in your own words)
+    hindi_label: नियम और शर्तें / कब्ज़ा हस्तांतरण (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: term_duration
+    label: Timeline to Hand Over Possession
+    hindi_label: कब्ज़ा हस्तांतरण की समयसीमा
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  seller: party_a_name
+  buyer: party_b_name
+  property: property_address
+  consideration: sale_consideration_amount
+  sale price: sale_consideration_amount
+  place: place

@@ -1,0 +1,61 @@
+draft_id: job_application
+name: Job Application
+hindi_name: नौकरी आवेदन
+category: Application
+advocate_register: false
+description: >-
+  A formal application to an employer applying for an advertised or known
+  job vacancy.
+authority_label: The Human Resources Manager,
+applicable_acts_hint: []
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  position applied for and the applicant's relevant qualifications/
+  experience, using only the details given. Do not invent qualifications or
+  experience not stated.
+legal_enrichment_hints: []
+trigger_phrases:
+  - job application
+  - application for job
+  - naukri application
+  - job ke liye application
+  - नौकरी आवेदन
+  - नौकरी के लिए आवेदन
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: designation
+    label: Position Applied For
+    hindi_label: आवेदित पद
+  - key: information_sought
+    label: Qualifications and Experience (list each point)
+    hindi_label: योग्यता और अनुभव (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (resume, certificates, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  position: designation
+  post: designation
+  place: place

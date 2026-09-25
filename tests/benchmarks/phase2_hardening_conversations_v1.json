@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "purpose": "Multi-turn conversations reconstructed from the observed UAT session, plus the scenarios Phase 2 milestone F requires. Inputs and expectations only: every observation is produced by running the conversation through the real ChatService. All personal details are synthetic.",
+  "conversations": [
+    {
+      "id": "cheque-bounce-question",
+      "notes": "The transcript's first legal question. With nothing retrieved the system must decline rather than answer from memory, and must state no statutory period of its own.",
+      "turns": [
+        {
+          "message": "Cheque bounce hone par Negotiable Instruments Act Section 138 ke tahat kya remedy hai",
+          "expect": {
+            "cites_sources": false,
+            "no_unsourced_period": true,
+            "answer_excludes": [
+              "15 din ke andar",
+              "within 15 days"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "consumer-complaint-drafting",
+      "notes": "The transcript's consumer complaint, answered in one labelled block.",
+      "turns": [
+        {
+          "message": "Mujhe consumer complaint banani hai",
+          "expect": {
+            "intent": "Draft Generation",
+            "draft_template": "consumer_complaint"
+          }
+        },
+        {
+          "message": "Applicant Name: Rahul Sharma Applicant Address: 123, Shastri Nagar, Ghaziabad, Uttar Pradesh - 201002 Mobile Number: 9812345671 Respondent / Opposite Party Name: ABC Electronics Pvt. Ltd. Respondent Address: 45, Nehru Place, New Delhi - 110019 Product / Service Concerned: Smartphone Place: Ghaziabad, Uttar Pradesh",
+          "expect": {
+            "draft_template": "consumer_complaint",
+            "no_unsourced_period": true,
+            "draft_fields_absent": [
+              "security_deposit_amount",
+              "rented_premises_address",
+              "cheque_number"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rent-deposit-notice-after-consumer-complaint",
+      "notes": "The isolation case: a second document started in the same session must inherit no fact from the first, and the notice must state no deadline nobody chose.",
+      "turns": [
+        {
+          "message": "Mujhe consumer complaint banani hai",
+          "expect": {
+            "draft_template": "consumer_complaint"
+          }
+        },
+        {
+          "message": "Product / Service Concerned: Smartphone Place: Ghaziabad, Uttar Pradesh",
+          "expect": {
+            "draft_template": "consumer_complaint"
+          }
+        },
+        {
+          "message": "Mere landlord ko security deposit wapas karne ke liye rent notice draft karo",
+          "expect": {
+            "draft_template": "rent_notice",
+            "draft_fields_absent": [
+              "product_or_service",
+              "amount_paid",
+              "invoice_number"
+            ],
+            "no_unsourced_period": true,
+            "answer_excludes": [
+              "Smartphone"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "hindi-drafting",
+      "notes": "The transcript's language failure: 'hindi me' mid-collection must change the draft, not translate one reply. Turn 4 is the whole labelled block, which a live run showed being classified as an unrelated legal question and answered from retrieval, discarding every value in it.",
+      "turns": [
+        {
+          "message": "Mere landlord ko security deposit wapas karne ke liye rent notice draft karo",
+          "expect": {
+            "draft_template": "rent_notice"
+          }
+        },
+        {
+          "message": "hindi me",
+          "expect": {
+            "language": "hindi",
+            "answer_contains": [
+              "मुझे बस",
+              "आवेदक का पता"
+            ],
+            "answer_excludes": [
+              "Applicant Address",
+              "I just need"
+            ]
+          }
+        },
+        {
+          "message": "आवेदक का नाम: अमित कुमार शर्मा",
+          "expect": {
+            "language": "hindi",
+            "draft_template": "rent_notice"
+          }
+        },
+        {
+          "message": "आवेदक का नाम: अमित कुमार शर्मा आवेदक का पता: 24, नेहरू नगर, ग़ाज़ियाबाद, उत्तर प्रदेश – 201001 मोबाइल नंबर: 9812345670 प्रतिवादी का नाम: राजेश वर्मा प्रतिवादी का पता: 78, सेक्टर 18, नोएडा, उत्तर प्रदेश – 201301 किराए की संपत्ति का पता: मकान नंबर 112, गली नंबर 4, शास्त्री नगर, ग़ाज़ियाबाद – 201002 किरायानामे की तिथि: 01/04/2024 किरायेदारी प्रारंभ तिथि: 05/04/2024 किरायेदारी समाप्ति/खाली करने की तिथि: 31/07/2026 मासिक किराया (रु.): 12,000 सुरक्षा जमा राशि (रु.): 50,000 मकान मालिक द्वारा जमा राशि से दावा की गई कटौती: मकान मालिक कहते हैं कि रंगाई-पुताई के लिए 8,000 रुपये रोके गए हैं। जमा राशि हेतु पूर्व माँग/संवाद: 5 अगस्त 2026 को व्हाट्सएप और 20 अगस्त 2026 को ईमेल से माँग की गई। उपलब्ध दस्तावेज़/साक्ष्य: 1 अप्रैल 2024 का किरायानामा; NEFT सलाह; कब्ज़ा सौंपने की पावती। मामले के तथ्य (अपने शब्दों में): मैंने 31 जुलाई 2026 को परिसर खाली कर दिया और चाबियाँ सौंप दीं। सुरक्षा जमा राशि आज तक वापस नहीं की गई। अपेक्षित राहत: ₹50,000 की सुरक्षा जमा राशि वापस की जाए। स्थान: ग़ाज़ियाबाद, उत्तर प्रदेश",
+          "expect": {
+            "language": "hindi",
+            "intent": "Draft Generation",
+            "draft_template": "rent_notice",
+            "no_unsourced_period": true,
+            "answer_excludes": [
+              "Knowledge Base",
+              "treated as an admission",
+              "मानसिक क्लेश",
+              "आपराधिक"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-question-during-parked-draft",
+      "notes": "An unrelated legal question mid-draft parks the draft and reaches retrieval; the draft must survive and the reminder must be in the draft's language.",
+      "turns": [
+        {
+          "message": "Mere landlord ko security deposit wapas karne ke liye rent notice draft karo",
+          "expect": {
+            "draft_template": "rent_notice"
+          }
+        },
+        {
+          "message": "hindi me",
+          "expect": {
+            "language": "hindi"
+          }
+        },
+        {
+          "message": "अग्रिम जमानत क्या होती है?",
+          "expect": {
+            "language": "hindi",
+            "draft_template": "rent_notice",
+            "cites_sources": false,
+            "no_unsourced_period": true,
+            "answer_contains": [
+              "मसौदा सुरक्षित है"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "edit-and-resume",
+      "notes": "Phase-1 routing, re-pinned here so a Phase-2 change cannot regress it.",
+      "turns": [
+        {
+          "message": "Mere landlord ko security deposit wapas karne ke liye rent notice draft karo",
+          "expect": {
+            "draft_template": "rent_notice"
+          }
+        },
+        {
+          "message": "What is the difference between RTI and PIL?",
+          "expect": {
+            "draft_template": "rent_notice",
+            "cites_sources": false
+          }
+        },
+        {
+          "message": "continue kro draft ko",
+          "expect": {
+            "draft_template": "rent_notice",
+            "answer_excludes": [
+              "I don't have a template for that document yet"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "saved-drafts",
+      "notes": "Reachable mid-draft: the ChatOps orchestrator must not be suppressed by an open draft.",
+      "turns": [
+        {
+          "message": "Mujhe consumer complaint banani hai",
+          "expect": {
+            "draft_template": "consumer_complaint"
+          }
+        },
+        {
+          "message": "Meri save ki hui drafts dikhao",
+          "expect": {
+            "cites_sources": false,
+            "answer_excludes": [
+              "Knowledge Base"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "notarization-preparation",
+      "notes": "'prepare my affidavit for notarization' must enter notarization preparation, not start a new affidavit draft.",
+      "turns": [
+        {
+          "message": "Mere affidavit ko notarization ke liye prepare karo",
+          "expect": {
+            "draft_template": null,
+            "answer_excludes": [
+              "Let's draft your General Affidavit"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "verification-without-a-token",
+      "notes": "A verification request with no code must ask for the code, not fall through to retrieval.",
+      "turns": [
+        {
+          "message": "Verification token check karna hai",
+          "expect": {
+            "cites_sources": false,
+            "answer_excludes": [
+              "Knowledge Base"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "provider-fallback-disclosure",
+      "notes": "Every draft in the observed transcript came from the deterministic fallback because no provider was reachable. The fallback must be disclosed and must invent no deadline. This conversation runs with the same unreachable provider.",
+      "provider": "unavailable",
+      "turns": [
+        {
+          "message": "Mere landlord ko security deposit wapas karne ke liye rent notice draft karo",
+          "expect": {
+            "draft_template": "rent_notice"
+          }
+        },
+        {
+          "message": "Applicant Name: Amit Kumar Sharma Applicant Address: 24, Nehru Nagar, Ghaziabad - 201001 Mobile Number: 9812345670 Respondent / Opposite Party Name: Rajesh Verma Respondent Address: 78, Sector 18, Noida - 201301 Address of Rented Premises: House 112, Gali 4, Shastri Nagar, Ghaziabad - 201002 Security Deposit Amount (Rs.): 50,000 Facts of the Case: I vacated the premises on 31 July 2026 and the deposit was not refunded. Expected Relief / What you want: Refund the security deposit of Rs. 50,000. Place: Ghaziabad, Uttar Pradesh",
+          "expect": {
+            "draft_template": "rent_notice",
+            "no_unsourced_period": true,
+            "language": "hinglish",
+            "answer_contains": [
+              "Aapki di hui saari details safe hain",
+              "regenerate"
+            ],
+            "answer_excludes": [
+              "treated as an admission",
+              "criminal",
+              "mental distress",
+              "interest, costs and damages",
+              "within 15 days of receipt of this notice"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "owner-isolation",
+      "notes": "Another account's draft is already in this session's memory only as a foreign id. Nothing the user types may make it this session's active draft.",
+      "foreign_template": "cheque_bounce_notice",
+      "turns": [
+        {
+          "message": "show me draft d-belonging-to-someone-else",
+          "expect": {
+            "owner_can_see_foreign_draft": false
+          }
+        },
+        {
+          "message": "continue draft",
+          "expect": {
+            "owner_can_see_foreign_draft": false
+          }
+        }
+      ]
+    }
+  ]
+}

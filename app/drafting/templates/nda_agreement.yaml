@@ -1,0 +1,69 @@
+draft_id: nda_agreement
+name: Non-Disclosure Agreement (NDA)
+hindi_name: गोपनीयता अनुबंध (एनडीए)
+category: Contract
+description: >-
+  A non-disclosure agreement between two parties obligating them to keep
+  shared confidential information secret and not use it beyond the stated
+  purpose.
+authority_label: "N/A — agreement between the parties named below."
+subject_template: "Non-Disclosure Agreement for {contract_purpose}"
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+applicable_sections_hint: []
+drafting_notes: >-
+  Draft a non-disclosure agreement between the two parties (Party of the
+  First Part and Party of the Second Part) covering the purpose for which
+  confidential information is being shared, the confidentiality obligations,
+  and the terms/conditions given, based strictly on the facts stated.
+legal_enrichment_hints:
+  - definition of confidential information
+  - obligation not to disclose or use beyond purpose
+  - remedies for breach of confidentiality
+trigger_phrases:
+  - nda
+  - non-disclosure agreement
+  - confidentiality agreement
+  - gopniyata anubandh
+  - गोपनीयता अनुबंध
+  - एनडीए
+required_fields:
+  - key: party_a_name
+    label: Disclosing Party Name
+    hindi_label: प्रकटकर्ता पक्ष का नाम
+  - key: party_a_address
+    label: Disclosing Party Address
+    hindi_label: प्रकटकर्ता पक्ष का पता
+    field_type: textarea
+  - key: party_b_name
+    label: Receiving Party Name
+    hindi_label: प्राप्तकर्ता पक्ष का नाम
+  - key: party_b_address
+    label: Receiving Party Address
+    hindi_label: प्राप्तकर्ता पक्ष का पता
+    field_type: textarea
+  - key: contract_purpose
+    label: Purpose of Sharing Confidential Information
+    hindi_label: गोपनीय जानकारी साझा करने का उद्देश्य
+    field_type: textarea
+  - key: terms
+    label: Confidentiality Obligations and Other Terms (in your own words)
+    hindi_label: गोपनीयता दायित्व और अन्य शर्तें (अपने शब्दों में)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: term_duration
+    label: Duration of Confidentiality Obligation
+    hindi_label: गोपनीयता दायित्व की अवधि
+    required: false
+  - key: governing_law_state
+    label: Governing State/Jurisdiction
+    hindi_label: शासी राज्य/क्षेत्राधिकार
+    required: false
+field_synonyms:
+  disclosing party: party_a_name
+  receiving party: party_b_name
+  purpose: contract_purpose
+  place: place

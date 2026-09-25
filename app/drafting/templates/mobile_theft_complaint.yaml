@@ -1,0 +1,114 @@
+draft_id: mobile_theft_complaint
+name: Mobile Theft Complaint
+hindi_name: मोबाइल चोरी शिकायत
+category: Complaint
+description: >-
+  A written complaint to the Station House Officer reporting the theft or
+  loss of a mobile phone and requesting registration of an FIR/NCR and
+  blocking of the device via its IMEI number.
+authority_label: The Station House Officer,
+subject_template: "Complaint regarding theft of mobile phone (IMEI: {imei_number})"
+applicable_acts_hint:
+  - Bharatiya Nyaya Sanhita, 2023
+  - Bharatiya Nagarik Suraksha Sanhita, 2023
+applicable_sections_hint:
+  - Section 303 BNS (theft)
+  - Section 173 BNSS
+drafting_notes: >-
+  Request the Station House Officer to register an FIR/NCR for theft of the
+  mobile phone, note the IMEI number for blocking/tracing purposes via the
+  Central Equipment Identity Register (CEIR), based strictly on the facts
+  stated by the applicant.
+legal_enrichment_hints:
+  - IMEI blocking via CEIR portal
+  - SIM blocking with telecom operator
+  - duplicate invoice for insurance claim
+typical_supporting_documents:
+  - Photocopy of the purchase invoice/bill (if available)
+  - Photocopy of the phone's box or warranty card showing the IMEI number
+  - Photocopy of the applicant's identity proof (Aadhaar Card)
+trigger_phrases:
+  - mobile theft complaint
+  - phone theft
+  - mobile stolen
+  - phone stolen
+  - mobile chori
+  - phone chori ho gaya
+  - मेरा मोबाइल चोरी हो गया
+  - मोबाइल चोरी शिकायत
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Alternate Mobile Number
+    hindi_label: वैकल्पिक मोबाइल नंबर
+    field_type: tel
+  - key: police_station
+    label: Police Station
+    hindi_label: पुलिस थाना
+  - key: imei_number
+    label: IMEI Number
+    hindi_label: आईएमईआई नंबर
+  - key: incident_location
+    label: Location Phone Was Stolen From
+    hindi_label: चोरी का स्थान
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as \"S/o, D/o, W/o [name]\" -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Theft Date
+    hindi_label: चोरी की तारीख
+    field_type: date
+    required: false
+  - key: incident_time
+    label: Approximate Theft Time
+    hindi_label: चोरी का अनुमानित समय
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (purchase invoice, box, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  police station: police_station
+  thana: police_station
+  location: incident_location
+  imei: imei_number
+  date: incident_date
+  time: incident_time
+  witness: witnesses
+  place: place

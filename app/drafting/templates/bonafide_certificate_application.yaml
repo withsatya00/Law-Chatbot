@@ -1,0 +1,65 @@
+draft_id: bonafide_certificate_application
+name: Bonafide Certificate Application
+hindi_name: बोनाफाइड प्रमाण पत्र आवेदन
+category: Application
+description: >-
+  An application to the Principal/Head of Institution requesting a bonafide
+  student certificate, typically needed for a bank account, passport, or
+  scholarship.
+authority_label: The Principal,
+applicable_acts_hint: []
+applicable_sections_hint: []
+drafting_notes: >-
+  Format the information sought/requested as a clearly numbered list: the
+  bonafide certificate requested and the purpose it is needed for, using
+  only the details given.
+legal_enrichment_hints: []
+trigger_phrases:
+  - bonafide certificate application
+  - bonafide certificate
+  - bonafide letter
+  - बोनाफाइड प्रमाण पत्र आवेदन
+  - बोनाफाइड सर्टिफिकेट
+required_fields:
+  - key: applicant_name
+    label: Student Name
+    hindi_label: छात्र का नाम
+  - key: student_class_roll
+    label: Class / Roll Number / Course
+    hindi_label: कक्षा / रोल नंबर / पाठ्यक्रम
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: information_sought
+    label: Purpose of Certificate (list each point)
+    hindi_label: प्रमाण पत्र का उद्देश्य (प्रत्येक बिंदु सूचीबद्ध करें)
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  class: student_class_roll
+  roll number: student_class_roll
+  place: place

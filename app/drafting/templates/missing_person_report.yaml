@@ -1,0 +1,112 @@
+draft_id: missing_person_report
+name: Missing Person Report
+hindi_name: गुमशुदगी की रिपोर्ट
+category: Complaint
+description: >-
+  A written report to the Station House Officer regarding a missing person,
+  requesting registration and immediate search action.
+authority_label: The Station House Officer,
+subject_template: "Report of missing person: {missing_person_name}"
+applicable_acts_hint:
+  - Bharatiya Nagarik Suraksha Sanhita, 2023
+applicable_sections_hint:
+  - Section 173 BNSS
+drafting_notes: >-
+  Request the Station House Officer to register the missing person report
+  without delay, circulate the description to other police stations, and
+  take immediate search action, based strictly on the facts stated by the
+  applicant. Do not allege any offence or name any suspect unless stated.
+legal_enrichment_hints:
+  - immediate action on missing person reports
+  - circulation of description and photograph
+  - zero-delay registration requirement
+trigger_phrases:
+  - missing person report
+  - missing person complaint
+  - person is missing
+  - gumshudgi
+  - gum ho gaya
+  - मेरा बेटा गुम हो गया
+  - गुमशुदगी रिपोर्ट
+  - मिसिंग पर्सन
+required_fields:
+  - key: applicant_name
+    label: Applicant Name (Reporting Person)
+    hindi_label: आवेदक का नाम (रिपोर्ट करने वाला)
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: police_station
+    label: Police Station
+    hindi_label: पुलिस थाना
+  - key: missing_person_name
+    label: Missing Person's Name
+    hindi_label: गुमशुदा व्यक्ति का नाम
+  - key: missing_person_description
+    label: Description (age, height, build, identifying marks, clothing)
+    hindi_label: विवरण (आयु, कद, पहचान चिह्न, कपड़े)
+    field_type: textarea
+  - key: incident_location
+    label: Last Seen Location
+    hindi_label: अंतिम बार देखे जाने का स्थान
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Last Seen Date
+    hindi_label: अंतिम बार देखे जाने की तारीख
+    field_type: date
+    required: false
+  - key: incident_time
+    label: Last Seen Time
+    hindi_label: अंतिम बार देखे जाने का समय
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (photograph, ID proof, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  police station: police_station
+  thana: police_station
+  location: incident_location
+  name: missing_person_name
+  description: missing_person_description
+  date: incident_date
+  time: incident_time
+  witness: witnesses
+  place: place

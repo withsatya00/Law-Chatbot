@@ -1,0 +1,144 @@
+draft_id: domestic_violence_complaint
+name: Domestic Violence Complaint
+hindi_name: घरेलू हिंसा शिकायत
+category: Complaint
+description: >-
+  A written complaint reporting domestic violence, requesting protection and
+  appropriate action under the Protection of Women from Domestic Violence
+  Act, 2005.
+authority_label: The Protection Officer / The Station House Officer,
+subject_template: "Complaint of domestic violence against {accused_details}"
+applicable_acts_hint:
+  - Protection of Women from Domestic Violence Act, 2005
+  - Bharatiya Nyaya Sanhita, 2023
+applicable_sections_hint:
+  - Section 85 BNS (cruelty by husband or relatives)
+  - Section 12, Protection of Women from Domestic Violence Act, 2005
+drafting_notes: >-
+  Request the Protection Officer/Station House Officer to register the
+  complaint, provide protection orders, residence orders, and monetary
+  relief as appropriate, based strictly on the facts stated by the
+  applicant. Do not name any person or allege any act not stated.
+legal_enrichment_hints:
+  - protection order
+  - residence order
+  - monetary relief
+  - safety of applicant and children
+trigger_phrases:
+  - domestic violence complaint
+  - domestic violence
+  - husband beats me
+  - ghar mein maar peet
+  - घरेलू हिंसा शिकायत
+  - घरेलू हिंसा
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: accused_details
+    label: Respondent Details (relationship, name, address)
+    hindi_label: प्रतिवादी का विवरण (संबंध, नाम, पता)
+    field_type: textarea
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: Expected Relief / What you want
+    hindi_label: अपेक्षित राहत
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_age
+    label: Age
+    hindi_label: आयु
+    field_type: number
+    required: false
+  - key: applicant_father_name
+    label: Father's / Husband's Name
+    hindi_label: पिता/पति का नाम
+    help_text: "Rendered as S/o, D/o, W/o [name] -- whichever applies to you."
+    required: false
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: incident_date
+    label: Most Recent Incident Date
+    hindi_label: नवीनतम घटना की तारीख
+    field_type: date
+    required: false
+  - key: witnesses
+    label: Witnesses (if any)
+    hindi_label: गवाह (यदि कोई हो)
+    field_type: textarea
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence (medical reports, photographs, etc.)
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  date: incident_date
+  witness: witnesses
+  place: place
+  accused: accused_details
+  respondent: accused_details
+document_family: complaint
+domain: family
+subcategory: domestic_violence
+supported_issues:
+  - domestic_violence
+  - cruelty
+  - harassment
+user_roles:
+  - complainant
+  - aggrieved_person
+opposite_party_roles:
+  - respondent
+  - accused
+desired_reliefs:
+  - protection_order
+  - residence_order
+  - monetary_relief
+case_stages:
+  - pre_litigation
+forums:
+  - protection_officer
+  - police_station
+jurisdiction:
+  country: IN
+  level: central
+  states:
+    - all
+aliases:
+  english:
+    - domestic violence complaint
+  hindi:
+    - घरेलू हिंसा शिकायत
+  hinglish:
+    - ghar mein maar peet ki shikayat
+    - domestic violence complaint banani hai
+supporting_documents:
+  - medical reports
+  - photographs
+  - witness details
+  - prior police complaints if any
+review_requirements:
+  jurisdiction_check: true
+  limitation_check: false
+  court_fee_check: false
+  advocate_review_recommended: true
+template_status: production
+template_version: "1.0"

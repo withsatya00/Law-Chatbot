@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "external_id": "mha-bns-act-45-2023-en",
+      "title": "Bharatiya Nyaya Sanhita, 2023",
+      "url": "https://www.mha.gov.in/sites/default/files/2024-04/250883_english_01042024.pdf",
+      "jurisdiction_code": "IN",
+      "document_type": "bare_act",
+      "version": "Act 45 of 2023 official Gazette text",
+      "filename": "BNS_2023_Official_Gazette.pdf",
+      "act_number": "45",
+      "enactment_year": 2023,
+      "effective_from": null
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+draft_id: demand_notice
+name: General Demand Notice
+hindi_name: सामान्य मांग नोटिस
+category: Notice
+description: >-
+  A general-purpose legal notice demanding payment or performance of an
+  obligation not covered by a more specific notice type.
+authority_label: "To,"
+subject_template: "Demand notice for {expected_relief}"
+applicable_acts_hint:
+  - Indian Contract Act, 1872
+  - Code of Civil Procedure, 1908
+applicable_sections_hint: []
+drafting_notes: >-
+  State the basis of the demand and the facts giving rise to it, and demand
+  compliance within 15 days, failing which appropriate legal proceedings
+  will be initiated, based strictly on the facts stated by the applicant.
+legal_enrichment_hints:
+  - civil demand
+  - pre-litigation notice
+  - reasonable opportunity to comply
+trigger_phrases:
+  - demand notice
+  - legal demand notice
+  - general demand notice
+  - मांग नोटिस
+  - सामान्य मांग नोटिस
+required_fields:
+  - key: applicant_name
+    label: Applicant Name
+    hindi_label: आवेदक का नाम
+  - key: applicant_address
+    label: Applicant Address
+    hindi_label: आवेदक का पता
+    field_type: textarea
+  - key: applicant_mobile
+    label: Mobile Number
+    hindi_label: मोबाइल नंबर
+    field_type: tel
+  - key: respondent_name
+    label: Respondent / Opposite Party Name
+    hindi_label: प्रतिवादी का नाम
+  - key: respondent_address
+    label: Respondent Address
+    hindi_label: प्रतिवादी का पता
+    field_type: textarea
+  - key: facts
+    label: Facts of the Case (in your own words)
+    hindi_label: मामले के तथ्य (अपने शब्दों में)
+    field_type: textarea
+  - key: expected_relief
+    label: What is being demanded
+    hindi_label: क्या मांगा जा रहा है
+    field_type: textarea
+  - key: place
+    label: Place
+    hindi_label: स्थान
+optional_fields:
+  - key: applicant_email
+    label: Email
+    hindi_label: ईमेल
+    field_type: email
+    required: false
+  - key: dues_amount
+    label: Amount Demanded (Rs., if any)
+    hindi_label: मांगी गई राशि (रु., यदि कोई हो)
+    required: false
+  - key: available_documents
+    label: Available Documents / Evidence
+    hindi_label: उपलब्ध दस्तावेज़/साक्ष्य
+    field_type: textarea
+    required: false
+field_synonyms:
+  respondent: respondent_name
+  place: place
+  amount: dues_amount

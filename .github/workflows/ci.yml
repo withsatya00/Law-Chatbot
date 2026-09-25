@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Blocking: both are clean as of 2026-09-12 (0 ruff errors, 0 mypy
+      # errors under `[tool.mypy] strict = true`). Started non-blocking
+      # while pre-existing debt was still being cleaned up; now that the
+      # baseline is clean, a new violation should fail the build like any
+      # other regression rather than being silently allowed back in.
+      - name: Ruff
+        run: python -m ruff check app/ tests/
+
+      - name: Mypy
+        run: python -m mypy app/
+
+      - name: Pytest
+        env:
+          ENVIRONMENT: test
+        run: python -m pytest tests/ -q
+
+      # Non-blocking: a new CVE can appear in a transitive dependency with no
+      # code change on this project's part, so failing every PR the instant
+      # one is disclosed upstream would block unrelated work. Surfaced here
+      # for visibility/triage; tighten to blocking once there's a process for
+      # reviewing and allow-listing/patching findings.
+      - name: Dependency vulnerability scan (pip-audit)
+        continue-on-error: true
+        run: |
+          pip install pip-audit
+          pip-audit -r requirements.txt
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build API image
+        run: docker build -t legal-ai-assistant:ci -f Dockerfile .
+
+      # Non-blocking for the same reason as pip-audit above -- a base-image
+      # or OS-package CVE can appear with no change here. Bump the pinned
+      # action version occasionally; `severity` narrows noise to what's
+      # actually worth triaging.
+      - name: Scan image for vulnerabilities (Trivy)
+        uses: aquasecurity/trivy-action@0.28.0
+        continue-on-error: true
+        with:
+          image-ref: legal-ai-assistant:ci
+          severity: CRITICAL,HIGH
